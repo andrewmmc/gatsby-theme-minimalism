@@ -68,9 +68,9 @@ module.exports = {
 | `convertKitFormId` (string) | N         | ConvertKit ID for blog posts, will not render if empty          |
 | `likeCoinId` (string)       | N         | LikeCoin ID for blog posts, will not render if empty            |
 | `mapId` (string)            | N         | Google Maps My Maps ID for about page, will not render if empty |
-| `compactMode` (string)      | N         | Gallery view or Compact view for header and home page           |
-| `darkTheme` (string)        | N         | Enable dark theme support                                       |
-| `showIntro` (string)        | N         | Show Introduction in home page                                  |
+| `compactMode` (boolean)      | N         | Gallery view or Compact view for header and home page           |
+| `darkTheme` (boolean)        | N         | Enable dark theme support                                       |
+| `showIntro` (boolean)        | N         | Show Introduction in home page                                  |
 
 ## Writing content and replacing images
 Check `example-site` for the sample folder structure for blog posts, about page and projects page, by placing markdown files in `content`. You may replace the assets images by creating `assets` folder.
