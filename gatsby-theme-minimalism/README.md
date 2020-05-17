@@ -2,7 +2,11 @@
 
 Welcome to `gatsby-theme-minimalism`, a Gatsby theme by [Andrew Mok](https://andrewmmc.com). It's a simple Gatsby Theme for blog and static website, easily create contents using Markdown.
 
-![](./README1.png)
+![](README1.png)
+![](gatsby-theme-minimalism/README1.png)
+
+## Demo
+[Check demo website here](https://andrewmmc.com)
 
 ## 🚀 Getting Started
 ```bash
