@@ -111,7 +111,7 @@ const Nav = styled(Container)`
 
 export default Header;
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     site {
       siteMetadata {

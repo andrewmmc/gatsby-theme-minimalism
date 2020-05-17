@@ -87,7 +87,7 @@ const Nav = styled.nav`
 
 export default HeaderCompact;
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     allSitePage {
       edges {

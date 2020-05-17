@@ -134,7 +134,7 @@ const SocialMedia = styled.div`
 
 export default Footer;
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     site {
       siteMetadata {

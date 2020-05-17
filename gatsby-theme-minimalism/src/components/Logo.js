@@ -16,7 +16,7 @@ const H1 = styled.h1`
 
 export default Logo;
 
-export const pageQuery = graphql`
+const pageQuery = graphql`
   query {
     site {
       siteMetadata {

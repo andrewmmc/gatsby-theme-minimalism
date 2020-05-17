@@ -20,7 +20,9 @@ const Category = ({ data, pageContext }) => {
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
       <Main>
         <h1>{category}</h1>
-        <p>共有 {count} 篇文章。</p>
+        <p>
+          {count} posts posted in {category}.
+        </p>
         <List>
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug;
