@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "workspaces": [
+    "example-site",
+    "gatsby-theme-minimalism"
+  ]
+}
