@@ -41,9 +41,10 @@ const BlogIndex = ({ data }) => {
                 <Info>
                   <time>{date}</time>
                   <span>{node.fields.readingTime.text}</span>
-                  <Link to={`/category/${node.frontmatter.category}`}>
-                    {node.frontmatter.category}
-                  </Link>
+                  {node.frontmatter.category &&
+                    node.frontmatter.category.map(cat => (
+                      <Link to={`/category/${cat}`}>{cat}</Link>
+                    ))}
                 </Info>
                 <H3>
                   <Link to={node.fields.slug}>{title}</Link>
