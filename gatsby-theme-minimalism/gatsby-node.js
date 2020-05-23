@@ -134,6 +134,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type MarkdownRemarkFrontmatter implements Node {
+      title: String
       featuredImage: File @fileByRelativePath
       category: [String]
     }
