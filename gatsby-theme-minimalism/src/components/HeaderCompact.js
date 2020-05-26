@@ -3,8 +3,8 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import rgba from 'polished/lib/color/rgba';
 
-import Logo from './Logo';
 import { Container } from 'themes/styles';
+import Logo from './Logo';
 
 const HeaderCompact = props => {
   const data = useStaticQuery(pageQuery);
@@ -24,22 +24,48 @@ const HeaderCompact = props => {
   }
 
   return (
-    <Header {...props}>
-      <StyledContainer>
-        <Link to="/">
-          <Logo />
-        </Link>
-        <Nav>
-          {headerItems.map(item => (
-            <Link key={item.path} to={item.path}>
-              {item.label}
-            </Link>
-          ))}
-        </Nav>
-      </StyledContainer>
-    </Header>
+    <>
+      <SkipToContentLink href="#main-content">
+        Skip to main content
+      </SkipToContentLink>
+      <Header {...props}>
+        <StyledContainer>
+          <Link to="/">
+            <Logo />
+          </Link>
+          <Nav>
+            {headerItems.map(item => (
+              <Link key={item.path} to={item.path}>
+                {item.label}
+              </Link>
+            ))}
+          </Nav>
+        </StyledContainer>
+      </Header>
+    </>
   );
 };
+
+const SkipToContentLink = styled.a`
+  position: absolute;
+  top: -999px;
+  z-index: -999;
+
+  &:focus,
+  &:active {
+    color: ${({ theme }) => rgba(theme.whiteColor, 0.9)};
+    background-color: ${({ theme }) => theme.primaryColor};
+    border: 0;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    padding: 0.4rem 1rem;
+    border-radius: 0 0 4px 4px;
+    text-align: center;
+    z-index: 999;
+  }
+`;
 
 const Header = styled.header`
   width: 100%;

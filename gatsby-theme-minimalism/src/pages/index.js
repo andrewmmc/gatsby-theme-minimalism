@@ -30,7 +30,7 @@ const BlogIndex = ({ data }) => {
             return (
               <Item key={node.fields.slug}>
                 {!compactMode && node.frontmatter.featuredImage && (
-                  <Link to={node.fields.slug}>
+                  <Link to={node.fields.slug} aria-label={title}>
                     <FeaturedImage
                       fluid={
                         node.frontmatter.featuredImage.childImageSharp.fluid

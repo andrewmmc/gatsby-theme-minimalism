@@ -87,7 +87,7 @@ const StyledInput = styled.input`
 
 const StyledButton = styled.button`
   padding: 0.4rem 1rem;
-  color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.whiteColor};
   background-color: ${({ theme }) => theme.primaryColor};
   border: 0;
   border-radius: 4px;

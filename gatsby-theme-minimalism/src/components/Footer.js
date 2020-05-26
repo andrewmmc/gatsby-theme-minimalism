@@ -25,7 +25,7 @@ const Footer = props => {
       <StyledContainer>
         <div>© {new Date().getFullYear()}</div>
         <SocialMedia>
-          <a href={`/rss.xml`} target="_blank" rel="noopener noreferrer">
+          <a href="/rss.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
             <Icon icon={faRss} />
             <span className="visually-hidden">RSS</span>
           </a>
@@ -34,6 +34,7 @@ const Footer = props => {
               href={`https://github.com/${github}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
             >
               <Icon icon={faGithub} />
               <span className="visually-hidden">GitHub</span>
@@ -44,6 +45,7 @@ const Footer = props => {
               href={`https://twitter.com/${twitter}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Twitter"
             >
               <Icon icon={faTwitter} />
               <span className="visually-hidden">Twitter</span>
@@ -54,6 +56,7 @@ const Footer = props => {
               href={`https://facebook.com/${facebook}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Facebook"
             >
               <Icon icon={faFacebook} />
               <span className="visually-hidden">Facebook</span>
@@ -64,6 +67,7 @@ const Footer = props => {
               href={`https://instagram.com/${instagram}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
             >
               <Icon icon={faInstagram} />
               <span className="visually-hidden">Instagram</span>
@@ -74,6 +78,7 @@ const Footer = props => {
               href={`https://linkedin.com/in/${linkedin}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Linkedin"
             >
               <Icon icon={faLinkedin} />
               <span className="visually-hidden">Linkedin</span>
@@ -84,6 +89,7 @@ const Footer = props => {
               href={`https://medium.com/${medium}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Medium"
             >
               <Icon icon={faMedium} />
               <span className="visually-hidden">Medium</span>

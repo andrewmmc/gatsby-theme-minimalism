@@ -12,6 +12,7 @@ const H1 = styled.h1`
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
+  display: inherit;
 `;
 
 export default Logo;

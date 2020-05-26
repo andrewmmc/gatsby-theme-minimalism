@@ -3,8 +3,8 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
 import rgba from 'polished/lib/color/rgba';
 
-import Logo from './Logo';
 import { Container } from 'themes/styles';
+import Logo from './Logo';
 
 const Header = props => {
   const data = useStaticQuery(pageQuery);
@@ -32,26 +32,50 @@ const Header = props => {
   }
 
   return (
-    <StyledHeader {...props}>
-      <TitleBar>
-        <Container>
-          <Link to="/">
-            <Logo />
-          </Link>
-        </Container>
-      </TitleBar>
-      <NavBar>
-        <Nav as="nav">
-          {headerItems.map(item => (
-            <Link key={item.path} to={item.path}>
-              {item.label}
+    <>
+      <SkipToContentLink href="#main-content">Skip to main content</SkipToContentLink>
+      <StyledHeader {...props}>
+        <TitleBar>
+          <Container>
+            <Link to="/">
+              <Logo />
             </Link>
-          ))}
-        </Nav>
-      </NavBar>
-    </StyledHeader>
+          </Container>
+        </TitleBar>
+        <NavBar>
+          <Nav as="nav">
+            {headerItems.map(item => (
+              <Link key={item.path} to={item.path}>
+                {item.label}
+              </Link>
+            ))}
+          </Nav>
+        </NavBar>
+      </StyledHeader>
+    </>
   );
 };
+
+const SkipToContentLink = styled.a`
+  position: absolute;
+  top: -999px;
+  z-index: -999;
+
+  &:focus,
+  &:active {
+    color: ${({ theme }) => rgba(theme.whiteColor, 0.9)};
+    background-color: ${({ theme }) => theme.primaryColor};
+    border: 0;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin: 0 auto;
+    padding: 0.4rem 1rem;
+    border-radius: 0 0 4px 4px;
+    text-align: center;
+    z-index: 999;
+  }
+`;
 
 const StyledHeader = styled.header`
   display: flex;
@@ -69,17 +93,17 @@ const StyledHeader = styled.header`
       border-bottom: none;
     }
   }
-
-  ${({ isCompactMode }) =>
-    isCompactMode &&
-    `
-  flex-direction: row;
-`}
 `;
 
 const TitleBar = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
+
+  a {
+    &:focus {
+      box-shadow: 0 0 0 2px ${({ theme }) => rgba(theme.primaryTextColor, 0.4)};
+    }
+  }
 `;
 
 const NavBar = styled.div`
@@ -97,14 +121,18 @@ const Nav = styled(Container)`
   a {
     display: inline-block;
     height: 100%;
-    padding: 0 2rem 0 0;
-    color: ${({ theme }) => rgba(theme.whiteColor, 0.8)};
+    margin: 0 2rem 0 0;
+    color: ${({ theme }) => theme.whiteColor};
 
     &:hover,
     &:focus,
     &:active {
       color: ${({ theme }) => rgba(theme.whiteColor, 0.9)};
       background-color: transparent;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px ${({ theme }) => rgba(theme.whiteColor, 0.4)};
     }
   }
 `;
