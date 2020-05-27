@@ -1,21 +1,20 @@
-name: Publish
+# name: Publish
 
-on:
-  release:
-    types: [published]
+# on:
+#   release:
+#     types: [published]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10
-          registry-url: https://registry.npmjs.org/
-      - run: cd gatsby-theme-minimalism
-      - run: yarn install
-      - run: echo "Start publishing..."
-      - run: yarn publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v1
+#       - uses: actions/setup-node@v1
+#         with:
+#           node-version: 10
+#           registry-url: https://registry.npmjs.org/
+#       - run:
+#         working-directory: gatsby-theme-minimalism
+#         shell: yarn install && yarn publish
+#         env:
+#           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
