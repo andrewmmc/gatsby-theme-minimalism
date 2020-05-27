@@ -13,8 +13,7 @@ jobs:
         with:
           node-version: 10
           registry-url: https://registry.npmjs.org/
-      - run:
-          working-directory: gatsby-theme-minimalism
-          shell: yarn install && yarn publish
-          env:
-            NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+      - run: yarn install && yarn publish
+        working-directory: gatsby-theme-minimalism
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
