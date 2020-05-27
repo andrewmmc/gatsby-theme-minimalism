@@ -69,7 +69,7 @@ const SkipToContentLink = styled.a`
 
 const Header = styled.header`
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 0;
   margin: 0 auto;
 
   a {
