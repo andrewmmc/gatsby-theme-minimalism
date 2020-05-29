@@ -1,7 +1,7 @@
 # gatsby-theme-minimalism
 ![Publish](https://github.com/andrewmmc/gatsby-theme-minimalism/workflows/Publish/badge.svg)
 
-Welcome to `gatsby-theme-minimalism`, a Gatsby theme by [Andrew Mok](https://andrewmmc.com). It's a simple Gatsby theme for blog and static website. Use it easily to create contents using `Markdown`.
+Welcome to `gatsby-theme-minimalism`, a Gatsby theme by [Andrew Mok](https://andrewmmc.com). It's a simple Gatsby theme for blog and static website. Use it easily to create contents by `Markdown`.
 
 ![Demo](https://github.com/andrewmmc/gatsby-theme-minimalism/raw/master/gatsby-theme-minimalism/README1.png)
 

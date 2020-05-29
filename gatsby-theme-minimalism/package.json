@@ -1,9 +1,10 @@
 {
   "name": "gatsby-theme-minimalism",
-  "description": "A simple Gatsby Theme for blog and static website, easily create contents using Markdown.",
-  "version": "1.0.7",
+  "description": "A simple Gatsby theme for blog and static website. Use it easily to create contents by Markdown.",
+  "version": "1.0.8",
   "author": "Andrew Mok <hello@andrewmmc.com>",
   "license": "MIT",
+  "keywords": ["gatsby", "gatsby-plugin", "gatsby-theme"],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
@@ -62,7 +63,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
-  "homepage": "https://andrewmmc.com",
+  "homepage": "https://github.com/andrewmmc/gatsby-theme-minimalism",
   "main": "n/a",
   "repository": {
     "type": "git",
