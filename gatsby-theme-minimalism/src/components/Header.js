@@ -9,16 +9,7 @@ import Logo from './Logo';
 const Header = props => {
   const data = useStaticQuery(pageQuery);
   const allPages = data.allSitePage.edges.map(edge => edge.node.path);
-
-  const categoryList = data.allMarkdownRemark.group
-    .map(category => ({
-      path: `/category/${category.fieldValue}`,
-      label: category.fieldValue,
-      count: category.totalCount,
-    }))
-    .sort((a, b) => b.count - a.count);
-
-  const headerItems = [...categoryList];
+  const headerItems = [];
 
   if (allPages.includes('/projects/')) {
     headerItems.unshift({
@@ -40,14 +31,10 @@ const Header = props => {
         Skip to main content
       </SkipToContentLink>
       <StyledHeader {...props}>
-        <TitleBar>
-          <Container>
-            <Link to="/">
-              <Logo />
-            </Link>
-          </Container>
-        </TitleBar>
-        <NavBar>
+        <StyledContainer>
+          <Link to="/">
+            <Logo />
+          </Link>
           <Nav as="nav">
             {headerItems.map(item => (
               <Link key={item.path} to={item.path}>
@@ -55,7 +42,7 @@ const Header = props => {
               </Link>
             ))}
           </Nav>
-        </NavBar>
+        </StyledContainer>
       </StyledHeader>
     </>
   );
@@ -83,9 +70,7 @@ const SkipToContentLink = styled.a`
 `;
 
 const StyledHeader = styled.header`
-  display: flex;
-  flex-direction: column;
-
+  padding: 1rem 0;
   a,
   a:hover,
   a:focus,
@@ -94,34 +79,29 @@ const StyledHeader = styled.header`
   }
 `;
 
-const TitleBar = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-`;
-
-const NavBar = styled.div`
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
-  background-color: ${({ theme }) => theme.primaryColor};
+const StyledContainer = styled(Container)`
+  display: flex;
 `;
 
 const Nav = styled(Container)`
   display: flex;
-  font-size: 1rem;
+  width: auto;
+  padding: 0 0 0 1rem;
+  flex-grow: 1;
+  overflow-x: auto;
+  white-space: nowrap;
+  align-self: center;
 
   a {
+    color: ${({ theme }) => theme.primaryTextColor};
     display: inline-block;
     height: 100%;
-    margin: 0 2rem 0 0;
-    color: ${({ theme }) => theme.whiteColor};
+    margin: 0 1rem;
     border-bottom: 0px;
 
     &:hover,
     &:focus,
     &:active {
-      color: ${({ theme }) => rgba(theme.whiteColor, 0.9)};
       background-color: transparent;
       border-bottom: 0px;
     }
@@ -152,15 +132,6 @@ const pageQuery = graphql`
     about: markdownRemark(fields: { slug: { eq: "/about/" } }) {
       frontmatter {
         title
-      }
-    }
-    allMarkdownRemark(
-      filter: { fields: { type: { eq: "blog" } } }
-      limit: 1000
-    ) {
-      group(field: frontmatter___category) {
-        fieldValue
-        totalCount
       }
     }
   }

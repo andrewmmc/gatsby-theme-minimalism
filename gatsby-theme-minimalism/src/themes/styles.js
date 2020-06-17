@@ -21,7 +21,8 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.primaryTextColor};
     text-decoration: none;
     transition: all 100ms;
-    border-bottom: 1px solid ${({ theme }) => theme.primaryTextColor};
+    border-bottom: 1px solid ${({ theme }) =>
+      rgba(theme.primaryTextColor, 0.5)};
     
     &:hover,
     &:focus, 
