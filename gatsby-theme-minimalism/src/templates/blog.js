@@ -47,6 +47,17 @@ const BlogTemplate = ({ data, pageContext }) => {
         </header>
         <Content dangerouslySetInnerHTML={{ __html: post.html }} />
       </Article>
+      <Comment>
+        <a
+          href={`https://twitter.com/search?q=${encodeURI(
+            siteUrl + post.fields.slug
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Discuss on Twitter
+        </a>
+      </Comment>
       {likeCoinId && (
         <LikeCoin
           userId={likeCoinId}
@@ -81,7 +92,7 @@ BlogTemplate.propTypes = {
 };
 
 const Info = styled.p`
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
   display: flex;
   margin: 0;
 
@@ -130,6 +141,10 @@ const Content = styled.div`
     margin: 1rem auto;
     box-shadow: 0 0.8em 2em ${({ theme }) => rgba(theme.primaryTextColor, 0.15)};
   }
+`;
+
+const Comment = styled.div`
+  margin: 1rem 0;
 `;
 
 export default BlogTemplate;

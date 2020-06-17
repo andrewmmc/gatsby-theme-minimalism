@@ -53,8 +53,6 @@ module.exports = {
         convertKitFormId: '',
         likeCoinId: '',
         mapId: '',
-        compactMode: false,
-        darkTheme: false,
         showIntro: false,
       },
     },
@@ -68,9 +66,9 @@ module.exports = {
 | `convertKitFormId` (string) | N         | ConvertKit ID for blog posts, will not render if empty          |
 | `likeCoinId` (string)       | N         | LikeCoin ID for blog posts, will not render if empty            |
 | `mapId` (string)            | N         | Google Maps My Maps ID for about page, will not render if empty |
-| `compactMode` (boolean)      | N         | Gallery view or Compact view for header and home page           |
 | `darkTheme` (boolean)        | N         | Enable dark theme support                                       |
 | `showIntro` (boolean)        | N         | Show introduction in home page                                  |
+| `compactMode` (boolean)      | N         | DEPRECATED           |
 
 ## Writing contents and replacing images
 Check `example-site` for the sample folder structure for blog posts, about page and projects page. 

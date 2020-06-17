@@ -21,19 +21,24 @@ const Header = props => {
   const headerItems = [...categoryList];
 
   if (allPages.includes('/projects/')) {
-    headerItems.push({
+    headerItems.unshift({
       path: '/projects',
       label: data.projects.frontmatter.title,
     });
   }
 
   if (allPages.includes('/about/')) {
-    headerItems.push({ path: '/about', label: data.about.frontmatter.title });
+    headerItems.unshift({
+      path: '/about',
+      label: data.about.frontmatter.title,
+    });
   }
 
   return (
     <>
-      <SkipToContentLink href="#main-content">Skip to main content</SkipToContentLink>
+      <SkipToContentLink href="#main-content">
+        Skip to main content
+      </SkipToContentLink>
       <StyledHeader {...props}>
         <TitleBar>
           <Container>
@@ -81,29 +86,17 @@ const StyledHeader = styled.header`
   display: flex;
   flex-direction: column;
 
-  a {
-    color: ${({ theme }) => theme.primaryTextColor};
-    border-bottom: 0;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: ${({ theme }) => rgba(theme.primaryTextColor, 0.9)};
-      background: none;
-      border-bottom: none;
-    }
+  a,
+  a:hover,
+  a:focus,
+  a:active {
+    border-bottom: 0px;
   }
 `;
 
 const TitleBar = styled.div`
   padding-top: 1rem;
   padding-bottom: 1rem;
-
-  a {
-    &:focus {
-      box-shadow: 0 0 0 2px ${({ theme }) => rgba(theme.primaryTextColor, 0.4)};
-    }
-  }
 `;
 
 const NavBar = styled.div`
@@ -116,23 +109,21 @@ const NavBar = styled.div`
 
 const Nav = styled(Container)`
   display: flex;
-  font-size: 0.9rem;
+  font-size: 1rem;
 
   a {
     display: inline-block;
     height: 100%;
     margin: 0 2rem 0 0;
     color: ${({ theme }) => theme.whiteColor};
+    border-bottom: 0px;
 
     &:hover,
     &:focus,
     &:active {
       color: ${({ theme }) => rgba(theme.whiteColor, 0.9)};
       background-color: transparent;
-    }
-
-    &:focus {
-      box-shadow: 0 0 0 2px ${({ theme }) => rgba(theme.whiteColor, 0.4)};
+      border-bottom: 0px;
     }
   }
 `;

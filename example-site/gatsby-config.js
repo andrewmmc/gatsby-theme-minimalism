@@ -27,7 +27,6 @@ module.exports = {
         convertKitFormId: '',
         likeCoinId: '',
         mapId: '',
-        compactMode: false,
         darkTheme: false,
         showIntro: false,
       },

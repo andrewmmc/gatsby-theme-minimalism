@@ -14,7 +14,7 @@ import useThemeConfig from 'hooks/useThemeConfig';
 import { Main } from 'themes/styles';
 
 const BlogIndex = ({ data }) => {
-  const { compactMode, showIntro } = useThemeConfig();
+  const { showIntro } = useThemeConfig();
   const posts = data.allMarkdownRemark.edges;
   return (
     <Layout
@@ -23,13 +23,13 @@ const BlogIndex = ({ data }) => {
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
       <Main>
         {showIntro && <Bio />}
-        <List isCompactMode={compactMode}>
+        <List>
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug;
             const { date } = node.frontmatter;
             return (
               <Item key={node.fields.slug}>
-                {!compactMode && node.frontmatter.featuredImage && (
+                {node.frontmatter.featuredImage && (
                   <Link to={node.fields.slug} aria-label={title}>
                     <FeaturedImage
                       fluid={
@@ -43,13 +43,15 @@ const BlogIndex = ({ data }) => {
                   <span>{node.fields.readingTime.text}</span>
                   {node.frontmatter.category &&
                     node.frontmatter.category.map(cat => (
-                      <Link to={`/category/${cat}`}>{cat}</Link>
+                      <Link to={`/category/${cat}`} key={cat}>
+                        {cat}
+                      </Link>
                     ))}
                 </Info>
                 <H3>
                   <Link to={node.fields.slug}>{title}</Link>
                 </H3>
-                {!compactMode && <p>{node.excerpt}</p>}
+                {node.excerpt && <Excerpt>{node.excerpt}</Excerpt>}
               </Item>
             );
           })}
@@ -66,20 +68,6 @@ BlogIndex.propTypes = {
 const List = styled.ul`
   list-style: none;
   margin: 0;
-
-  ${({ isCompactMode }) =>
-    isCompactMode &&
-    `
-    ${Item} {
-      border-bottom: 0;
-      padding: 0;
-      margin: 2rem 0;
-    }
-
-    ${H3} {
-      margin: 0;
-    }
-  `}
 `;
 
 const Item = styled.li`
@@ -93,7 +81,7 @@ const Item = styled.li`
 `;
 
 const H3 = styled.h3`
-  margin: 0.5rem 0 1rem 0;
+  margin: 0.5rem 0;
   font-weight: 600;
 `;
 
@@ -121,6 +109,10 @@ const FeaturedImage = styled(Image).attrs(({ theme }) => ({
     object-fit: cover !important;
     object-position: 50% 50% !important;
   }
+`;
+
+const Excerpt = styled.p`
+  font-size: 0.95rem;
 `;
 
 export default BlogIndex;

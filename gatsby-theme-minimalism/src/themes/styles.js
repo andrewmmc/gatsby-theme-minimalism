@@ -18,23 +18,17 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.primaryTextColor};
     text-decoration: none;
-    border-bottom: 2px solid ${({ theme }) => rgba(theme.primaryColor, 0.4)};
     transition: all 100ms;
-
+    border-bottom: 1px solid ${({ theme }) => theme.primaryTextColor};
+    
     &:hover,
     &:focus, 
     &:active {
       color: ${({ theme }) => darken(0.1, theme.primaryColor)};
-      background-color: ${({ theme }) => rgba(theme.primaryColor, 0.15)};
+      border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
       text-decoration: none;
-      border-bottom: 2px solid ${({ theme }) =>
-        darken(0.1, theme.primaryColor)};
-    }
-
-    &:focus {
-      box-shadow: 0 0 0 2px ${({ theme }) => rgba(theme.primaryColor, 0.4)};
     }
   }
 
