@@ -102,7 +102,7 @@ const Nav = styled.nav`
     margin: 0 1rem;
     border-bottom: 0px;
 
-    &:last-childî {
+    &:last-child {
       margin-right: 0;
     }
 
