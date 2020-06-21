@@ -10,7 +10,7 @@ const Logo = props => {
 
 const H1 = styled.h1`
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   display: inherit;
 `;

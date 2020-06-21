@@ -25,7 +25,12 @@ const Footer = props => {
       <StyledContainer>
         <div>© {new Date().getFullYear()}</div>
         <SocialMedia>
-          <a href="/rss.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS">
+          <a
+            href="/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="RSS"
+          >
             <Icon icon={faRss} />
             <span className="visually-hidden">RSS</span>
           </a>
@@ -121,13 +126,11 @@ const SocialMedia = styled.div`
     height: 100%;
     display: inline-block;
     padding: 0 1rem;
-    color: ${({ theme }) => theme.primaryTextColor};
     border-bottom: none;
 
     &:hover,
     &:focus,
     &:active {
-      color: ${({ theme }) => rgba(theme.primaryTextColor, 0.9)};
       background: none;
       border-bottom: none;
     }

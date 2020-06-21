@@ -33,9 +33,9 @@ const Header = props => {
       <StyledHeader {...props}>
         <StyledContainer>
           <Link to="/">
-            <Logo />
+            <StyledLogo />
           </Link>
-          <Nav as="nav">
+          <Nav>
             {headerItems.map(item => (
               <Link key={item.path} to={item.path}>
                 {item.label}
@@ -81,13 +81,16 @@ const StyledHeader = styled.header`
 
 const StyledContainer = styled(Container)`
   display: flex;
+  justify-content: space-between;
 `;
 
-const Nav = styled(Container)`
-  display: flex;
-  width: auto;
-  padding: 0 0 0 1rem;
+const StyledLogo = styled(Logo)`
   flex-grow: 1;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  padding: 0 0 0 1rem;
   overflow-x: auto;
   white-space: nowrap;
   align-self: center;
@@ -98,6 +101,10 @@ const Nav = styled(Container)`
     height: 100%;
     margin: 0 1rem;
     border-bottom: 0px;
+
+    &:last-childî {
+      margin-right: 0;
+    }
 
     &:hover,
     &:focus,

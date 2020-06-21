@@ -21,14 +21,14 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.primaryTextColor};
     text-decoration: none;
     transition: all 100ms;
-    border-bottom: 1px solid ${({ theme }) =>
-      rgba(theme.primaryTextColor, 0.5)};
+    border-bottom: 2px solid ${({ theme }) =>
+      rgba(theme.primaryTextColor, 0.2)};
     
     &:hover,
     &:focus, 
     &:active {
-      color: ${({ theme }) => darken(0.1, theme.primaryColor)};
-      border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.primaryColor};
+      border-bottom: 2px solid ${({ theme }) => theme.primaryColor};
       text-decoration: none;
     }
   }
@@ -40,8 +40,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   blockquote {
-    border-left: 4px solid ${({ theme }) => rgba(theme.primaryTextColor, 0.5)};
-    color: ${({ theme }) => rgba(theme.primaryTextColor, 0.5)};
+    padding: 1em;
+    border-left: 2px solid ${({ theme }) => theme.primaryTextColor};
+    color: ${({ theme }) => theme.primaryTextColor};
+    background-color: ${({ theme }) => rgba(theme.primaryTextColor, 0.1)};
   }
   
   code {
@@ -56,15 +58,17 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   /* PrismJS tweaks and line numbers */
-  p+div.gatsby-highlight, ol+div.gatsby-highlight, ul+div.gatsby-highlight {
+  div.gatsby-highlight {
     margin-bottom: ${rhythm(1)};
   }
   
   .gatsby-highlight {
+    font-size: 0.85rem;
     background-color: ${({ theme }) => theme.lightGrayColor};
     padding: 1em;
     overflow: auto;
-    border-radius: 0.25rem;
+    border: 1px solid ${({ theme }) => rgba(theme.primaryTextColor, 0.2)};
+    border-radius: 4px;
   }
   
   .gatsby-highlight pre[class*="language-"] {
@@ -78,6 +82,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   code[class*="language-"] {
+    font-size: 0.85rem;
     text-shadow: none !important;
   }
 

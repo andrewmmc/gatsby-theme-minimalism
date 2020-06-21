@@ -5,8 +5,8 @@ Welcome to `gatsby-theme-minimalism`, a Gatsby theme by [Andrew Mok](https://and
 
 ![Demo](https://github.com/andrewmmc/gatsby-theme-minimalism/raw/master/gatsby-theme-minimalism/README1.png)
 
-## Demo website
-* [Check demo website here](https://andrewmmc.com)
+## Preview
+* [Demo Website](https://gatsby-theme-minimalism.andrewmmc.dev)
 
 ## 🚀 Getting started
 ```bash

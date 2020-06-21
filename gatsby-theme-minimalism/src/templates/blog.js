@@ -4,7 +4,6 @@ import { shape } from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import LikeCoin from 'react-likecoin';
 import styled from 'styled-components';
-import media from 'styled-media-query';
 import rgba from 'polished/lib/color/rgba';
 
 import Bio from 'components/Bio';
@@ -34,7 +33,6 @@ const BlogTemplate = ({ data, pageContext }) => {
           <Wrapper>
             <Info>
               <time>{date}</time>
-              <span>{readingTime.text}</span>
               {category &&
                 category.map(cat => (
                   <Link to={`/category/${cat}`} key={cat}>
@@ -42,12 +40,15 @@ const BlogTemplate = ({ data, pageContext }) => {
                   </Link>
                 ))}
             </Info>
-            <Bio mini />
+            <SubInfo>
+              <span>{readingTime.text}</span>
+            </SubInfo>
           </Wrapper>
         </header>
         <Content dangerouslySetInnerHTML={{ __html: post.html }} />
       </Article>
       <Comment>
+        <Bio mini />
         <a
           href={`https://twitter.com/search?q=${encodeURI(
             siteUrl + post.fields.slug
@@ -94,31 +95,22 @@ BlogTemplate.propTypes = {
 const Info = styled.p`
   color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
   display: flex;
-  margin: 0;
+  margin-bottom: 0.5rem;
 
-  time,
-  span {
-    margin-right: 1rem;
+  a {
+    margin-left: 1rem;
   }
+`;
+
+const SubInfo = styled.p`
+  color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
+  display: flex;
+  margin-bottom: 0.5rem;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
-  margin-bottom: 0.5rem;
-
-  ${Info} {
-    margin-bottom: 0.5rem;
-  }
-
-  ${media.greaterThan('medium')`
-  flex-direction: row;
-
-  ${Info} {
-    margin-bottom: 0;
-  }
-`};
 `;
 
 const Nav = styled.ul`
@@ -128,6 +120,10 @@ const Nav = styled.ul`
   list-style: none;
   padding: 0;
   margin: 1.5rem 0;
+
+  li {
+    display: inline-flex;
+  }
 `;
 
 const Article = styled.article`
@@ -144,7 +140,12 @@ const Content = styled.div`
 `;
 
 const Comment = styled.div`
+  display: flex;
   margin: 1rem 0;
+
+  > a {
+    margin-left: 1rem;
+  }
 `;
 
 export default BlogTemplate;

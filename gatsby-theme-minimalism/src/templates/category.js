@@ -20,9 +20,10 @@ const Category = ({ data, pageContext }) => {
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
       <Main>
         <h1>{category}</h1>
-        <p>
-          {count} posts posted in {category}.
-        </p>
+        <PageInfo>
+          {count} posts posted in{' '}
+          <Link to={`/category/${category}`}>{category}</Link>.
+        </PageInfo>
         <List>
           {posts.map(({ node }) => {
             const title = node.frontmatter.title || node.fields.slug;
@@ -58,6 +59,10 @@ const Category = ({ data, pageContext }) => {
 Category.propTypes = {
   data: shape({}).isRequired,
 };
+
+const PageInfo = styled.p`
+  color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
+`;
 
 const List = styled.ul`
   list-style: none;
