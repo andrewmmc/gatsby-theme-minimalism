@@ -65,55 +65,17 @@ BlogIndex.propTypes = {
   data: shape({}).isRequired,
 };
 
-const List = styled.ul`
-  list-style: none;
-  margin: 0;
-`;
+const List = styled.ul``;
 
-const Item = styled.li`
-  padding: 1.5rem 0;
-  margin: 0;
-  border-bottom: 1px solid ${({ theme }) => theme.lightGrayColor};
+const Item = styled.li``;
 
-  &:last-of-type {
-    border-bottom: 0;
-  }
-`;
+const H3 = styled.h3``;
 
-const H3 = styled.h3`
-  margin: 0.5rem 0;
-  font-weight: 600;
-`;
+const Info = styled.small``;
 
-const Info = styled.small`
-  display: block;
-  margin: 0 0 0.5rem 0;
-  color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
+const FeaturedImage = styled(Image)``;
 
-  time,
-  span {
-    margin-right: 1rem;
-  }
-`;
-
-const FeaturedImage = styled(Image).attrs(({ theme }) => ({
-  backgroundColor: theme.lightGrayColor,
-}))`
-  width: 100%;
-  height: 180px;
-  background-position: center;
-  box-shadow: 0 0.8em 2em ${({ theme }) => rgba(theme.primaryTextColor, 0.1)};
-  margin: 0 0 1rem 0 !important;
-
-  & > img {
-    object-fit: cover !important;
-    object-position: 50% 50% !important;
-  }
-`;
-
-const Excerpt = styled.p`
-  font-size: 0.95rem;
-`;
+const Excerpt = styled.p``;
 
 export default BlogIndex;
 

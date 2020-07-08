@@ -43,71 +43,12 @@ const Signup = () => {
   );
 };
 
-const Container = styled.div`
-  padding: 1rem 1.5rem;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => rgba(theme.primaryColor, 0.4)};
-  text-align: center;
-  background-color: ${({ theme }) => rgba(theme.primaryColor, 0.1)};
-`;
+const Container = styled.div``;
 
-const StyledForm = styled.form`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+const StyledForm = styled.form``;
 
-  ${media.greaterThan('medium')`
-    flex-direction: row;
-  `};
-`;
+const StyledInput = styled.input``;
 
-const StyledInput = styled.input`
-  appearance: none;
-  border: 1px solid ${({ theme }) => rgba(theme.primaryTextColor, 0.1)};
-  border-radius: 4px;
-  padding: 0.25rem 0.6rem;
-  background-color: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.primaryTextColor};
-  width: 100%;
-  margin: 0 0 1rem 0;
-
-  ${media.greaterThan('medium')`
-    width: 200px;
-    margin: 0 1rem 0 0;
-  `};
-
-  &:focus,
-  &:active {
-    border: 1px solid ${({ theme }) => darken(0.1, theme.primaryColor)};
-    outline-width: 0;
-    outline: none;
-    box-shadow: 0 0 0 4px ${({ theme }) => rgba(theme.primaryColor, 0.4)};
-  }
-`;
-
-const StyledButton = styled.button`
-  padding: 0.4rem 1rem;
-  color: ${({ theme }) => theme.whiteColor};
-  background-color: ${({ theme }) => theme.primaryColor};
-  border: 0;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  font-size: 1rem;
-  vertical-align: middle;
-  width: 100%;
-
-  ${media.greaterThan('medium')`
-    width: auto;
-  `};
-
-  &:focus,
-  &:active {
-    outline-width: 0;
-    background-color: ${({ theme }) => darken(0.1, theme.primaryColor)};
-    box-shadow: 0 0 0 4px ${({ theme }) => rgba(theme.primaryColor, 0.4)};
-  }
-`;
+const StyledButton = styled.button``;
 
 export default Signup;

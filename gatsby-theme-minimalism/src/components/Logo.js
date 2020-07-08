@@ -8,12 +8,7 @@ const Logo = props => {
   return <H1 {...props}>{title}</H1>;
 };
 
-const H1 = styled.h1`
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-  display: inherit;
-`;
+const H1 = styled.h1``;
 
 export default Logo;
 

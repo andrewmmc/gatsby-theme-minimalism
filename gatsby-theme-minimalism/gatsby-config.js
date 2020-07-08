@@ -126,12 +126,12 @@ module.exports = options => {
         },
       },
       'gatsby-plugin-react-helmet',
-      {
-        resolve: 'gatsby-plugin-typography',
-        options: {
-          pathToConfigModule: require.resolve('./src/themes/typography'),
-        },
-      },
+      // {
+      //   resolve: 'gatsby-plugin-typography',
+      //   options: {
+      //     pathToConfigModule: require.resolve('./src/themes/typography'),
+      //   },
+      // },
       'gatsby-plugin-styled-components',
     ],
   };

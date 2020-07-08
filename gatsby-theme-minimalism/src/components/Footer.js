@@ -106,40 +106,11 @@ const Footer = props => {
   );
 };
 
-const StyledFooter = styled.footer`
-  padding: 1rem 0;
-  color: ${({ theme }) => theme.primaryTextColor};
-`;
+const StyledFooter = styled.footer``;
 
-const StyledContainer = styled(Container)`
-  display: flex;
-  justify-content: space-between;
-`;
+const StyledContainer = styled(Container)``;
 
-const SocialMedia = styled.div`
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: flex-end;
-
-  a {
-    width: 50px;
-    height: 100%;
-    display: inline-block;
-    padding: 0 1rem;
-    border-bottom: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: none;
-      border-bottom: none;
-    }
-  }
-
-  span.visually-hidden {
-    display: none;
-  }
-`;
+const SocialMedia = styled.div``;
 
 export default Footer;
 

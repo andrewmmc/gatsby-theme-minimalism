@@ -35,12 +35,7 @@ About.propTypes = {
   data: shape({}).isRequired,
 };
 
-const StyledIframe = styled.iframe`
-  border: none;
-  margin: 0 auto;
-  width: 100%;
-  height: 280px;
-`;
+const StyledIframe = styled.iframe``;
 
 export default About;
 

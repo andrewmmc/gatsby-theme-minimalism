@@ -92,61 +92,19 @@ BlogTemplate.propTypes = {
   location: shape({}).isRequired,
 };
 
-const Info = styled.p`
-  color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
-  display: flex;
-  margin-bottom: 0.5rem;
+const Info = styled.p``;
 
-  a {
-    margin-left: 1rem;
-  }
-`;
+const SubInfo = styled.p``;
 
-const SubInfo = styled.p`
-  color: ${({ theme }) => rgba(theme.primaryTextColor, 0.7)};
-  display: flex;
-  margin-bottom: 0.5rem;
-`;
+const Wrapper = styled.div``;
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+const Nav = styled.ul``;
 
-const Nav = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
+const Article = styled.article``;
 
-  li {
-    display: inline-flex;
-  }
-`;
+const Content = styled.div``;
 
-const Article = styled.article`
-  margin: 2rem 0;
-`;
-
-const Content = styled.div`
-  margin: 1rem 0;
-
-  span.gatsby-resp-image-wrapper {
-    margin: 1rem auto;
-    box-shadow: 0 0.8em 2em ${({ theme }) => rgba(theme.primaryTextColor, 0.15)};
-  }
-`;
-
-const Comment = styled.div`
-  display: flex;
-  margin: 1rem 0;
-
-  > a {
-    margin-left: 1rem;
-  }
-`;
+const Comment = styled.div``;
 
 export default BlogTemplate;
 

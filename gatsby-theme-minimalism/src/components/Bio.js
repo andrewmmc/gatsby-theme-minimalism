@@ -23,20 +23,9 @@ const Bio = ({ mini = false, ...props }) => {
   );
 };
 
-const Container = styled.div`
-  ${({ mini }) =>
-    mini &&
-    `
-  display: flex;
-  align-items: center;
-`}
-`;
+const Container = styled.div``;
 
-const StyledImage = styled(Image)`
-  max-width: 25px;
-  border-radius: 50%;
-  margin: 0 0.5rem 0 0;
-`;
+const StyledImage = styled(Image)``;
 
 const pageQuery = graphql`
   query BioQuery {
