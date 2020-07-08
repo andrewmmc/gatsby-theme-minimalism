@@ -1,19 +1,14 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import styled from 'styled-components';
-import rgba from 'polished/lib/color/rgba';
-import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
-import { faRss } from '@fortawesome/free-solid-svg-icons';
+import { Box, Flex, IconButton } from '@chakra-ui/core';
 import {
-  faGithub,
-  faTwitter,
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faMedium,
-} from '@fortawesome/free-brands-svg-icons';
-
-import { Container } from 'themes/styles';
+  FiFacebook,
+  FiGithub,
+  FiTwitter,
+  FiLinkedin,
+  FiRss,
+  FiInstagram,
+} from 'react-icons/fi';
 
 const Footer = props => {
   const data = useStaticQuery(pageQuery);
@@ -21,96 +16,95 @@ const Footer = props => {
   const { github, linkedin, facebook, instagram, twitter, medium } = social;
 
   return (
-    <StyledFooter {...props}>
-      <StyledContainer>
-        <div>© {new Date().getFullYear()}</div>
-        <SocialMedia>
-          <a
-            href="/rss.xml"
+    <Flex
+      as="footer"
+      justify="space-between"
+      maxW="5xl"
+      m="0 auto"
+      p="3"
+      {...props}
+    >
+      <div>© {new Date().getFullYear()}</div>
+      <div>
+        <IconButton
+          as="a"
+          href="/rss.xml"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="RSS"
+          variant="ghost"
+          icon={FiRss}
+        />
+        {github && (
+          <IconButton
+            as="a"
+            href={`https://github.com/${github}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="RSS"
+            aria-label="GitHub"
+            variant="ghost"
+            icon={FiGithub}
+          />
+        )}
+        {twitter && (
+          <IconButton
+            as="a"
+            href={`https://twitter.com/${twitter}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+            variant="ghost"
+            icon={FiTwitter}
+          />
+        )}
+        {facebook && (
+          <IconButton
+            as="a"
+            href={`https://facebook.com/${facebook}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            variant="ghost"
+            icon={FiFacebook}
+          />
+        )}
+        {instagram && (
+          <IconButton
+            as="a"
+            href={`https://instagram.com/${instagram}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            variant="ghost"
+            icon={FiInstagram}
+          />
+        )}
+        {linkedin && (
+          <IconButton
+            as="a"
+            href={`https://linkedin.com/in/${linkedin}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Linkedin"
+            variant="ghost"
+            icon={FiLinkedin}
+          />
+        )}
+        {/* {medium && (
+          <a
+            href={`https://medium.com/${medium}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Medium"
           >
-            <Icon icon={faRss} />
-            <span className="visually-hidden">RSS</span>
+            <Icon icon={faMedium} />
+            <span className="visually-hidden">Medium</span>
           </a>
-          {github && (
-            <a
-              href={`https://github.com/${github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <Icon icon={faGithub} />
-              <span className="visually-hidden">GitHub</span>
-            </a>
-          )}
-          {twitter && (
-            <a
-              href={`https://twitter.com/${twitter}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
-              <Icon icon={faTwitter} />
-              <span className="visually-hidden">Twitter</span>
-            </a>
-          )}
-          {facebook && (
-            <a
-              href={`https://facebook.com/${facebook}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <Icon icon={faFacebook} />
-              <span className="visually-hidden">Facebook</span>
-            </a>
-          )}
-          {instagram && (
-            <a
-              href={`https://instagram.com/${instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <Icon icon={faInstagram} />
-              <span className="visually-hidden">Instagram</span>
-            </a>
-          )}
-          {linkedin && (
-            <a
-              href={`https://linkedin.com/in/${linkedin}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Linkedin"
-            >
-              <Icon icon={faLinkedin} />
-              <span className="visually-hidden">Linkedin</span>
-            </a>
-          )}
-          {medium && (
-            <a
-              href={`https://medium.com/${medium}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Medium"
-            >
-              <Icon icon={faMedium} />
-              <span className="visually-hidden">Medium</span>
-            </a>
-          )}
-        </SocialMedia>
-      </StyledContainer>
-    </StyledFooter>
+        )} */}
+      </div>
+    </Flex>
   );
 };
-
-const StyledFooter = styled.footer``;
-
-const StyledContainer = styled(Container)``;
-
-const SocialMedia = styled.div``;
 
 export default Footer;
 

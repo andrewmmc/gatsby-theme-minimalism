@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-
-const MAX_WIDTH = 42;
-
-export const Container = styled.div``;
+import { theme } from '@chakra-ui/core';
 
 export const Main = styled.div``;
+
+export const customTheme = {
+  ...theme,
+};

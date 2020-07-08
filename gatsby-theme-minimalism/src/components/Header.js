@@ -1,11 +1,6 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import { Box, Heading, Flex, Text, Button } from '@chakra-ui/core';
-import styled from 'styled-components';
-import rgba from 'polished/lib/color/rgba';
-
-// import { Container } from 'themes/styles';
-// import Container from './Container';
+import { Flex, Button, List, ListItem } from '@chakra-ui/core';
 import Logo from './Logo';
 
 const Header = props => {
@@ -33,22 +28,30 @@ const Header = props => {
       justify="space-between"
       maxW="5xl"
       m="0 auto"
-      py="4"
+      p="3"
       {...props}
     >
-      <Link to="/">
+      <Button as={Link} variant="ghost" to="/">
         <Logo />
-      </Link>
-      <ul>
+      </Button>
+      <List d="flex">
         {headerItems.map(item => (
-          <Link key={item.path} to={item.path}>
-            {item.label}
-          </Link>
+          <ListItem>
+            <MenuItem key={item.path} to={item.path}>
+              {item.label}
+            </MenuItem>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </Flex>
   );
 };
+
+const MenuItem = ({ to, children, ...props }) => (
+  <Button as={Link} to={to} variant="ghost" fontWeight="normal" {...props}>
+    {children}
+  </Button>
+);
 
 export default Header;
 
