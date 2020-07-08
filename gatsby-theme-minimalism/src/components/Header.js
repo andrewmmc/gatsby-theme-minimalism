@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Box, Heading, Flex, Text, Button } from '@chakra-ui/core';
 import styled from 'styled-components';
 import rgba from 'polished/lib/color/rgba';
 
-import { Container } from 'themes/styles';
+// import { Container } from 'themes/styles';
+// import Container from './Container';
 import Logo from './Logo';
 
 const Header = props => {
@@ -26,37 +28,27 @@ const Header = props => {
   }
 
   return (
-    <>
-      <SkipToContentLink href="#main-content">
-        Skip to main content
-      </SkipToContentLink>
-      <StyledHeader {...props}>
-        <StyledContainer>
-          <Link to="/">
-            <StyledLogo />
+    <Flex
+      as="nav"
+      justify="space-between"
+      maxW="5xl"
+      m="0 auto"
+      py="4"
+      {...props}
+    >
+      <Link to="/">
+        <Logo />
+      </Link>
+      <ul>
+        {headerItems.map(item => (
+          <Link key={item.path} to={item.path}>
+            {item.label}
           </Link>
-          <Nav>
-            {headerItems.map(item => (
-              <Link key={item.path} to={item.path}>
-                {item.label}
-              </Link>
-            ))}
-          </Nav>
-        </StyledContainer>
-      </StyledHeader>
-    </>
+        ))}
+      </ul>
+    </Flex>
   );
 };
-
-const SkipToContentLink = styled.a``;
-
-const StyledHeader = styled.header``;
-
-const StyledContainer = styled(Container)``;
-
-const StyledLogo = styled(Logo)``;
-
-const Nav = styled.nav``;
 
 export default Header;
 

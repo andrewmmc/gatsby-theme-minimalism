@@ -1,14 +1,16 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import styled from 'styled-components';
+import { Heading } from '@chakra-ui/core';
 
 const Logo = props => {
   const data = useStaticQuery(pageQuery);
   const { title } = data.site.siteMetadata;
-  return <H1 {...props}>{title}</H1>;
+  return (
+    <Heading as="h1" size="md" {...props}>
+      {title}
+    </Heading>
+  );
 };
-
-const H1 = styled.h1``;
 
 export default Logo;
 
