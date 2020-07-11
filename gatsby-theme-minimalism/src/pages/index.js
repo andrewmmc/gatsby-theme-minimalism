@@ -2,82 +2,109 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { Link, graphql } from 'gatsby';
-import styled from 'styled-components';
-import Image from 'gatsby-image';
-import rgba from 'polished/lib/color/rgba';
+import {
+  Box,
+  Button,
+  Heading,
+  Icon,
+  List,
+  ListItem,
+  Text,
+  SimpleGrid,
+  Stack,
+} from '@chakra-ui/core';
 
 import Bio from 'components/Bio';
+import { BackgroundImage, FeatureImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
-import Thumbnail from 'components/Thumbnail';
-import useThemeConfig from 'hooks/useThemeConfig';
-import { Main } from 'themes/styles';
 
-const BlogIndex = ({ data }) => {
-  const { showIntro } = useThemeConfig();
+const Index = ({ data }) => {
+  // const { showIntro } = useThemeConfig();
   const posts = data.allMarkdownRemark.edges;
+  const [firstPost, ...remainPosts] = posts;
   return (
     <Layout
-      cover={<Thumbnail fluid={data.featuredImage.childImageSharp.fluid} />}
+      cover={
+        <BackgroundImage fluid={data.featuredImage.childImageSharp.fluid} />
+      }
     >
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
-      <Main>
-        {showIntro && <Bio />}
-        <List>
-          {posts.map(({ node }) => {
-            const title = node.frontmatter.title || node.fields.slug;
-            const { date } = node.frontmatter;
-            return (
-              <Item key={node.fields.slug}>
-                {node.frontmatter.featuredImage && (
-                  <Link to={node.fields.slug} aria-label={title}>
-                    <FeaturedImage
-                      fluid={
-                        node.frontmatter.featuredImage.childImageSharp.fluid
-                      }
-                    />
-                  </Link>
-                )}
-                <Info>
-                  <time>{date}</time>
-                  <span>{node.fields.readingTime.text}</span>
-                  {node.frontmatter.category &&
-                    node.frontmatter.category.map(cat => (
-                      <Link to={`/category/${cat}`} key={cat}>
-                        {cat}
-                      </Link>
-                    ))}
-                </Info>
-                <H3>
-                  <Link to={node.fields.slug}>{title}</Link>
-                </H3>
-                {node.excerpt && <Excerpt>{node.excerpt}</Excerpt>}
-              </Item>
-            );
-          })}
-        </List>
-      </Main>
+      {/* {showIntro && <Bio />} */}
+      <Stack spacing={12}>
+        <SimpleGrid columns={[1, 2]} spacing={8}>
+          {firstPost.node.frontmatter.featuredImage && (
+            <Box>
+              <Link
+                to={firstPost.node.fields.slug}
+                aria-label={firstPost.node.frontmatter.title}
+              >
+                <FeatureImage
+                  fluid={
+                    firstPost.node.frontmatter.featuredImage.childImageSharp
+                      .fluid
+                  }
+                />
+              </Link>
+            </Box>
+          )}
+          <Box d="flex" justifyContent="center" flexDir="column">
+            <Stack isInline spacing={4} color="gray.500" fontSize="sm">
+              <Text as="time">{firstPost.node.frontmatter.date}</Text>
+              <Text as="span">{firstPost.node.fields.readingTime.text}</Text>
+            </Stack>
+            <Heading as="h2" size="xl" mt={1} isTruncated>
+              <Link to={firstPost.node.fields.slug}>
+                {firstPost.node.frontmatter.title}
+              </Link>
+            </Heading>
+            {firstPost.node.excerpt && (
+              <Text mt={2}>{firstPost.node.excerpt}</Text>
+            )}
+          </Box>
+        </SimpleGrid>
+        <SimpleGrid columns={[1, 2]} spacing={8}>
+          <Box>
+            <Heading as="h3" size="lg">
+              Recent blog posts
+            </Heading>
+            <List my={4}>
+              {remainPosts.map(({ node }) => {
+                const title = node.frontmatter.title || node.fields.slug;
+                const { date } = node.frontmatter;
+                return (
+                  <ListItem mb="4">
+                    <Stack>
+                      <Text as="time" color="gray.500" fontSize="sm">
+                        {date}
+                      </Text>
+                      <Link to={node.fields.slug}>{title}</Link>
+                    </Stack>
+                  </ListItem>
+                );
+              })}
+            </List>
+            <Button as={Link} to="/blog" variant="ghost">
+              View More
+              <Icon name="chevron-right" ml="1" />
+            </Button>
+          </Box>
+          <Box>
+            <Heading as="h3" size="lg">
+              Recent notes
+            </Heading>
+          </Box>
+        </SimpleGrid>
+      </Stack>
     </Layout>
   );
 };
 
-BlogIndex.propTypes = {
+Index.propTypes = {
   data: shape({}).isRequired,
 };
 
-const List = styled.ul``;
-
-const Item = styled.li``;
-
-const H3 = styled.h3``;
-
-const Info = styled.small``;
-
-const FeaturedImage = styled(Image)``;
-
-const Excerpt = styled.p``;
-
-export default BlogIndex;
+export default Index;
 
 export const pageQuery = graphql`
   query {
@@ -86,7 +113,7 @@ export const pageQuery = graphql`
       relativePath: { eq: "home.jpg" }
     ) {
       childImageSharp {
-        fluid(quality: 90, maxWidth: 1440) {
+        fluid(quality: 90, maxWidth: 1920) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }
@@ -94,6 +121,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       filter: { fields: { type: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
+      limit: 4
     ) {
       edges {
         node {

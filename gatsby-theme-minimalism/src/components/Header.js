@@ -28,7 +28,8 @@ const Header = props => {
       justify="space-between"
       maxW="5xl"
       m="0 auto"
-      p="3"
+      px="4"
+      py="3"
       {...props}
     >
       <Button as={Link} variant="ghost" to="/">

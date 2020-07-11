@@ -6,3 +6,5 @@ export const Main = styled.div``;
 export const customTheme = {
   ...theme,
 };
+
+export default customTheme;

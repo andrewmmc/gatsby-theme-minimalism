@@ -2,15 +2,16 @@ import React from 'react';
 import { node } from 'prop-types';
 
 import Header from './Header';
+import Container from './Container';
 import Footer from './Footer';
 
 const Layout = ({ cover, children, ...props }) => (
   <>
     <Header />
     {cover}
-    <main tabindex="-1" {...props}>
+    <Container tabindex="-1" as="main" {...props}>
       {children}
-    </main>
+    </Container>
     <Footer />
   </>
 );
