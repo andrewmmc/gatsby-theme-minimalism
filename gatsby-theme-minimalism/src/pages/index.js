@@ -14,7 +14,7 @@ import {
   Stack,
 } from '@chakra-ui/core';
 
-import Bio from 'components/Bio';
+// import Bio from 'components/Bio';
 import { BackgroundImage, FeatureImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
@@ -73,12 +73,14 @@ const Index = ({ data }) => {
                 const title = node.frontmatter.title || node.fields.slug;
                 const { date } = node.frontmatter;
                 return (
-                  <ListItem mb="4">
-                    <Stack>
+                  <ListItem mb={6}>
+                    <Stack spacing={1}>
                       <Text as="time" color="gray.500" fontSize="sm">
                         {date}
                       </Text>
-                      <Link to={node.fields.slug}>{title}</Link>
+                      <Heading as="h3" size="md">
+                        <Link to={node.fields.slug}>{title}</Link>
+                      </Heading>
                     </Stack>
                   </ListItem>
                 );

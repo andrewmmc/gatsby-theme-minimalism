@@ -1,10 +1,10 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { shape } from 'prop-types';
-import styled from 'styled-components';
 import { graphql } from 'gatsby';
 import { Heading } from '@chakra-ui/core';
 
+import Content from 'components/Content';
 import { BackgroundImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
@@ -20,11 +20,19 @@ const About = ({ data }) => {
       }
     >
       <Seo title={post.frontmatter.title} description={post.excerpt} />
-      <Heading as="h1">{post.frontmatter.title}</Heading>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <Heading as="h1" size="2xl" mb={8}>
+        {post.frontmatter.title}
+      </Heading>
+      <Content htmlAst={post.htmlAst} />
       {mapId && (
-        <StyledIframe
+        <iframe
           src={`//www.google.com/maps/d/u/1/embed?mid=${mapId}&hl=en`}
+          style={{
+            border: 'none',
+            margin: '0 auto',
+            width: '100%',
+            height: '280px',
+          }}
         />
       )}
     </Layout>
@@ -34,13 +42,6 @@ const About = ({ data }) => {
 About.propTypes = {
   data: shape({}).isRequired,
 };
-
-const StyledIframe = styled.iframe`
-  border: none;
-  margin: 0 auto;
-  width: 100%;
-  height: 280px;
-`;
 
 export default About;
 
@@ -59,7 +60,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: "/about/" } }) {
       id
       excerpt(truncate: true)
-      html
+      htmlAst
       frontmatter {
         title
       }

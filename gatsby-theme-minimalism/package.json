@@ -40,6 +40,7 @@
     "react-icons": "^3.10.0",
     "react-likecoin": "^1.0.0",
     "react-typography": "^0.16.19",
+    "rehype-react": "^6.0.0",
     "styled-components": "^5.0.1",
     "styled-media-query": "^2.1.2",
     "typeface-merriweather": "0.0.72",

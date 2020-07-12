@@ -7,23 +7,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogTemplate = require.resolve('./src/templates/blog.js');
   const categoryTemplate = require.resolve('./src/templates/category.js');
 
-  // redirect /blog to home page
-  createRedirect({
-    fromPath: '/blog',
-    toPath: '/',
-    isPermanent: true,
-    redirectInBrowser: true,
-    force: true,
-  });
-
-  createRedirect({
-    fromPath: '/blog/',
-    toPath: '/',
-    isPermanent: true,
-    redirectInBrowser: true,
-    force: true,
-  });
-
   // Create blog pages
   const blogResults = await graphql(blogQuery);
 

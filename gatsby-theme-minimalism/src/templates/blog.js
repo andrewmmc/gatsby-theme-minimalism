@@ -4,6 +4,7 @@ import { shape } from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import LikeCoin from 'react-likecoin';
 import styled from 'styled-components';
+import { Heading, List, ListItem, Text, Stack } from '@chakra-ui/core';
 import rgba from 'polished/lib/color/rgba';
 
 import Bio from 'components/Bio';
@@ -27,7 +28,12 @@ const BlogTemplate = ({ data, pageContext }) => {
         description={post.excerpt}
         canonical={post.frontmatter.canonical}
       />
-      <Article>
+      <article>
+        <Heading as="h1" size="2xl" mb={8}>
+          {title}
+        </Heading>
+      </article>
+      {/* <Article>
         <header>
           <h1>{title}</h1>
           <Wrapper>
@@ -81,7 +87,7 @@ const BlogTemplate = ({ data, pageContext }) => {
             </Link>
           )}
         </li>
-      </Nav>
+      </Nav> */}
     </Layout>
   );
 };
