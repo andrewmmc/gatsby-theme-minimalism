@@ -2,9 +2,9 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { graphql } from 'gatsby';
-import { Heading } from '@chakra-ui/core';
 
 import Content from 'components/Content';
+import Heading from 'components/Heading';
 import { BackgroundImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
@@ -20,9 +20,7 @@ const About = ({ data }) => {
       }
     >
       <Seo title={post.frontmatter.title} description={post.excerpt} />
-      <Heading as="h1" size="2xl" mb={8}>
-        {post.frontmatter.title}
-      </Heading>
+      <Heading>{post.frontmatter.title}</Heading>
       <Content htmlAst={post.htmlAst} />
       {mapId && (
         <iframe

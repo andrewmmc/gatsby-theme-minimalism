@@ -19,7 +19,7 @@ const Footer = props => {
     <Flex
       as="footer"
       justify="space-between"
-      maxW="5xl"
+      maxW="2xl"
       m="0 auto"
       px="4"
       py="3"

@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/core';
 import Image from 'gatsby-background-image';
 
 export const BackgroundImage = ({ fluid, fixed, ...props }) => {
+  return null;
   return (
     <Box w="100%" h={[250, 450]}>
       <Image

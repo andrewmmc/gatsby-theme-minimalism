@@ -4,10 +4,12 @@ import { shape } from 'prop-types';
 import { graphql, Link } from 'gatsby';
 import LikeCoin from 'react-likecoin';
 import styled from 'styled-components';
-import { Heading, List, ListItem, Text, Stack } from '@chakra-ui/core';
+import { List, ListItem, Text, Stack } from '@chakra-ui/core';
 import rgba from 'polished/lib/color/rgba';
 
 import Bio from 'components/Bio';
+import Content from 'components/Content';
+import Heading from 'components/Heading';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import Signup from 'components/Signup';
@@ -29,9 +31,12 @@ const BlogTemplate = ({ data, pageContext }) => {
         canonical={post.frontmatter.canonical}
       />
       <article>
-        <Heading as="h1" size="2xl" mb={8}>
-          {title}
-        </Heading>
+        <Heading>{title}</Heading>
+        <Stack isInline spacing={4} my={4} color="gray.500">
+          <Text as="time">{date}</Text>
+          <Text as="span">{readingTime.text}</Text>
+        </Stack>
+        <Content mt={8} htmlAst={post.htmlAst} />
       </article>
       {/* <Article>
         <header>
@@ -108,8 +113,6 @@ const Nav = styled.ul``;
 
 const Article = styled.article``;
 
-const Content = styled.div``;
-
 const Comment = styled.div``;
 
 export default BlogTemplate;
@@ -124,7 +127,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(truncate: true)
-      html
+      htmlAst
       fields {
         slug
         readingTime {

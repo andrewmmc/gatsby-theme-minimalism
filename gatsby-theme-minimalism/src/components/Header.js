@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import { Flex, Button, List, ListItem } from '@chakra-ui/core';
+import { Box, Flex, Button, List, ListItem } from '@chakra-ui/core';
 import Logo from './Logo';
 
 const Header = props => {
@@ -23,28 +23,30 @@ const Header = props => {
   }
 
   return (
-    <Flex
-      as="nav"
-      justify="space-between"
-      maxW="5xl"
-      m="0 auto"
-      px="4"
-      py="3"
-      {...props}
-    >
-      <Button as={Link} variant="ghost" to="/">
-        <Logo />
-      </Button>
-      <List d="flex">
-        {headerItems.map(item => (
-          <ListItem>
-            <MenuItem key={item.path} to={item.path}>
-              {item.label}
-            </MenuItem>
-          </ListItem>
-        ))}
-      </List>
-    </Flex>
+    <Box bg="white" borderBottomWidth="1px">
+      <Flex
+        as="nav"
+        justify="space-between"
+        maxW="2xl"
+        m="0 auto"
+        px="4"
+        py="3"
+        {...props}
+      >
+        <Button as={Link} variant="ghost" to="/">
+          <Logo />
+        </Button>
+        <List d="flex">
+          {headerItems.map(item => (
+            <ListItem>
+              <MenuItem key={item.path} to={item.path}>
+                {item.label}
+              </MenuItem>
+            </ListItem>
+          ))}
+        </List>
+      </Flex>
+    </Box>
   );
 };
 
