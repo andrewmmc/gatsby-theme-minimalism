@@ -5,6 +5,7 @@ import {
   Code,
   Divider,
   Heading,
+  Icon,
   Link,
   List,
   ListItem,
@@ -31,23 +32,54 @@ const renderAst = new rehypeReact({
     h6: props => <Heading as="h6" size="xs" my={4} {...props} />,
     hr: props => <Divider borderColor="gray.400" my={4} {...props} />,
     p: props => <Text lineHeight="tall" my={4} {...props} />,
-    ul: props => <List styleType="disc" my={4} {...props} />,
-    li: props => <ListItem my={4} {...props} />,
-    ol: props => <List as="ol" styleType="decimal" my={4} {...props} />,
-    code: props => <Code {...props} />,
+    ul: props => <List styleType="disc" my={4} spacing={3} {...props} />,
+    li: props => <ListItem {...props} />,
+    ol: props => (
+      <List as="ol" styleType="decimal" my={4} spacing={3} {...props} />
+    ),
+    // code: props => <Code {...props} />,
     table: props => <Table {...props} />,
     thead: props => <TableHead {...props} />,
     tr: props => <TableRow {...props} />,
     th: props => <TableHeader {...props} />,
     tbody: props => <TableBody {...props} />,
     td: props => <TableCell {...props} />,
-    a: props => <Link color="primary.500" {...props} />,
-    // img: props => <Box as="div" {...props} />,
+    a: props => {
+      if (props.href && props.href.startsWith('http')) {
+        const { children, ...remainProps } = props;
+        return (
+          <Link color="primary.500" {...remainProps} isExternal>
+            {children}
+            <Icon name="external-link" mx={2} mb={1} />
+          </Link>
+        );
+      }
+      return <Link color="primary.500" {...props} />;
+    },
+    img: props => <Box as="img" rounded="sm" {...props} />,
+    figure: props => <Box as="figure" textAlign="center" my={4} {...props} />,
+    figcaption: props => (
+      <Text as="figcaption" fontSize="sm" color="gray.500" mt={4} {...props} />
+    ),
   },
 }).Compiler;
 
 const Content = ({ htmlAst, ...props }) => {
-  return <Box {...props}>{renderAst(htmlAst)}</Box>;
+  console.log(htmlAst);
+  return (
+    <Box {...props}>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+  :root {
+    --grvsc-padding-v: 0;
+  }
+`,
+        }}
+      />
+      {renderAst(htmlAst)}
+    </Box>
+  );
 };
 
 export default Content;

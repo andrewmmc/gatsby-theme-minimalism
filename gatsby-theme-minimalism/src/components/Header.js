@@ -38,10 +38,8 @@ const Header = props => {
         </Button>
         <List d="flex">
           {headerItems.map(item => (
-            <ListItem>
-              <MenuItem key={item.path} to={item.path}>
-                {item.label}
-              </MenuItem>
+            <ListItem key={item.path}>
+              <MenuItem to={item.path}>{item.label}</MenuItem>
             </ListItem>
           ))}
         </List>

@@ -33,6 +33,12 @@ module.exports = options => {
         options: {
           plugins: [
             {
+              resolve: `gatsby-remark-vscode`,
+              options: {
+                theme: 'Dark+ (default dark)',
+              },
+            },
+            {
               resolve: 'gatsby-remark-relative-images',
             },
             {
@@ -41,7 +47,8 @@ module.exports = options => {
                 maxWidth: 590,
                 linkImagesToOriginal: false,
                 showCaptions: true,
-                quality: 90,
+                withWebp: true,
+                quality: 95,
               },
             },
             {
@@ -50,7 +57,6 @@ module.exports = options => {
                 wrapperStyle: 'margin-bottom: 1.0725rem',
               },
             },
-            'gatsby-remark-prismjs',
             'gatsby-remark-copy-linked-files',
             'gatsby-remark-smartypants',
             'gatsby-remark-reading-time',
