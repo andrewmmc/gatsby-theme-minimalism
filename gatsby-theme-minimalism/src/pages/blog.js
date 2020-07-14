@@ -1,9 +1,10 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { shape } from 'prop-types';
-import { Link, graphql } from 'gatsby';
-import { Heading, List, ListItem, Text, Stack } from '@chakra-ui/core';
+import { Link as GatsbyLink, graphql } from 'gatsby';
+import { Link, List, ListItem, Text, Stack } from '@chakra-ui/core';
 
+import Heading from 'components/Heading';
 import { BackgroundImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
@@ -17,9 +18,7 @@ const Blog = ({ data }) => {
       }
     >
       <Seo title="Blog" />
-      <Heading as="h1" size="2xl" mb={8}>
-        Blog
-      </Heading>
+      <Heading>Blog</Heading>
       <List mb={4}>
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug;
@@ -31,7 +30,9 @@ const Blog = ({ data }) => {
                   {date}
                 </Text>
                 <Heading as="h3" size="md">
-                  <Link to={node.fields.slug}>{title}</Link>
+                  <Link as={GatsbyLink} to={node.fields.slug}>
+                    {title}
+                  </Link>
                 </Heading>
               </Stack>
             </ListItem>

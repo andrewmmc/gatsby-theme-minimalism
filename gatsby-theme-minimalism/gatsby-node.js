@@ -3,9 +3,8 @@ const { createFilePath } = require('gatsby-source-filesystem');
 const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions;
+  const { createPage } = actions;
   const blogTemplate = require.resolve('./src/templates/blog.js');
-  const categoryTemplate = require.resolve('./src/templates/category.js');
 
   // Create blog pages
   const blogResults = await graphql(blogQuery);
@@ -27,25 +26,6 @@ exports.createPages = async ({ graphql, actions }) => {
         slug,
         previous,
         next,
-      },
-    });
-  });
-
-  // Create category pages
-  const categoryResults = await graphql(categoryQuery);
-
-  if (categoryResults.errors) {
-    throw categoryResults.errors;
-  }
-
-  const categoryList = categoryResults.data.allMarkdownRemark.group;
-  categoryList.forEach(category => {
-    createPage({
-      path: `category/${category.fieldValue}`,
-      component: categoryTemplate,
-      context: {
-        category: category.fieldValue,
-        count: category.totalCount,
       },
     });
   });
@@ -162,15 +142,4 @@ const blogQuery = `
       }
     }
   }
-`;
-
-const categoryQuery = `
-{
-  allMarkdownRemark(filter: {fields: {type: {eq: "blog"}}}, limit: 1000) {
-    group(field: frontmatter___category) {
-      fieldValue
-      totalCount
-    }
-  }
-}
 `;

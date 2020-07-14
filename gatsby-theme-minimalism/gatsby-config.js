@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = options => {
+module.exports = (options) => {
   const { siteName = '' } = options;
   return {
     plugins: [
@@ -35,7 +35,7 @@ module.exports = options => {
             {
               resolve: `gatsby-remark-vscode`,
               options: {
-                theme: 'Dark+ (default dark)',
+                theme: 'Light+ (default light)',
               },
             },
             {
@@ -49,12 +49,6 @@ module.exports = options => {
                 showCaptions: true,
                 withWebp: true,
                 quality: 95,
-              },
-            },
-            {
-              resolve: 'gatsby-remark-responsive-iframe',
-              options: {
-                wrapperStyle: 'margin-bottom: 1.0725rem',
               },
             },
             'gatsby-remark-copy-linked-files',
@@ -90,7 +84,7 @@ module.exports = options => {
           feeds: [
             {
               serialize: ({ query: { site, allMarkdownRemark } }) => {
-                return allMarkdownRemark.edges.map(edge => {
+                return allMarkdownRemark.edges.map((edge) => {
                   return {
                     ...edge.node.frontmatter,
                     description: edge.node.excerpt,
@@ -132,12 +126,6 @@ module.exports = options => {
         },
       },
       'gatsby-plugin-react-helmet',
-      // {
-      //   resolve: 'gatsby-plugin-typography',
-      //   options: {
-      //     pathToConfigModule: require.resolve('./src/themes/typography'),
-      //   },
-      // },
       'gatsby-plugin-styled-components',
     ],
   };

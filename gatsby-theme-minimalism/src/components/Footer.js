@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Box, Flex, IconButton } from '@chakra-ui/core';
+import { Flex, IconButton } from '@chakra-ui/core';
 import {
   FiFacebook,
   FiGithub,
@@ -10,7 +10,7 @@ import {
   FiInstagram,
 } from 'react-icons/fi';
 
-const Footer = props => {
+const Footer = (props) => {
   const data = useStaticQuery(pageQuery);
   const { social } = data.site.siteMetadata;
   const { github, linkedin, facebook, instagram, twitter, medium } = social;

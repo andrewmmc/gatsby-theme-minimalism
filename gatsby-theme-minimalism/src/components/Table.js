@@ -6,7 +6,7 @@ import { Box } from '@chakra-ui/core';
  * @see https://tailwindui.com/components/application-ui/tables/wide
  */
 
-export const Table = props => {
+export const Table = (props) => {
   return (
     <Box shadow="sm" rounded="lg" overflow="hidden">
       <Box as="table" width="full" {...props} />
@@ -14,15 +14,15 @@ export const Table = props => {
   );
 };
 
-export const TableHead = props => {
+export const TableHead = (props) => {
   return <Box as="thead" {...props} />;
 };
 
-export const TableRow = props => {
+export const TableRow = (props) => {
   return <Box as="tr" bg="white" borderBottomWidth="1px" {...props} />;
 };
 
-export const TableHeader = props => {
+export const TableHeader = (props) => {
   return (
     <Box
       as="th"
@@ -42,11 +42,11 @@ export const TableHeader = props => {
   );
 };
 
-export const TableBody = props => {
+export const TableBody = (props) => {
   return <Box as="tbody" {...props} />;
 };
 
-export const TableCell = props => {
+export const TableCell = (props) => {
   return (
     <Box
       as="td"

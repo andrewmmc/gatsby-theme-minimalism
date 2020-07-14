@@ -1,13 +1,8 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
 import { shape } from 'prop-types';
-import { graphql, Link } from 'gatsby';
-import LikeCoin from 'react-likecoin';
-import styled from 'styled-components';
-import { List, ListItem, Text, Stack } from '@chakra-ui/core';
-import rgba from 'polished/lib/color/rgba';
+import { graphql, Link as GatsbyLink } from 'gatsby';
+import { Icon, Text, Stack, Divider, Link, Flex } from '@chakra-ui/core';
 
-import Bio from 'components/Bio';
 import Content from 'components/Content';
 import Heading from 'components/Heading';
 import Layout from 'components/Layout';
@@ -16,11 +11,11 @@ import Signup from 'components/Signup';
 import useThemeConfig from 'hooks/useThemeConfig';
 
 const BlogTemplate = ({ data, pageContext }) => {
-  const { likeCoinId, convertKitFormId } = useThemeConfig();
+  const { convertKitFormId } = useThemeConfig();
   const { siteUrl } = data.site.siteMetadata;
   const { previous, next } = pageContext;
   const post = data.markdownRemark;
-  const { title, date, category } = post.frontmatter;
+  const { title, date } = post.frontmatter;
   const { readingTime } = post.fields;
 
   return (
@@ -35,32 +30,20 @@ const BlogTemplate = ({ data, pageContext }) => {
         <Stack isInline spacing={4} my={4} color="gray.500">
           <Text as="time">{date}</Text>
           <Text as="span">{readingTime.text}</Text>
+          {/* {category &&
+            category.map((cat) => (
+              <Link to={`/category/${cat}`} key={cat}>
+                {cat}
+              </Link>
+            ))} */}
         </Stack>
         <Content mt={8} htmlAst={post.htmlAst} />
       </article>
-      {/* <Article>
-        <header>
-          <h1>{title}</h1>
-          <Wrapper>
-            <Info>
-              <time>{date}</time>
-              {category &&
-                category.map(cat => (
-                  <Link to={`/category/${cat}`} key={cat}>
-                    {cat}
-                  </Link>
-                ))}
-            </Info>
-            <SubInfo>
-              <span>{readingTime.text}</span>
-            </SubInfo>
-          </Wrapper>
-        </header>
-        <Content dangerouslySetInnerHTML={{ __html: post.html }} />
-      </Article>
-      <Comment>
-        <Bio mini />
-        <a
+      <Divider borderColor="gray.400" mt={8} mb={6} />
+      <Stack isInline spacing={4}>
+        <Link
+          color="primary.500"
+          fontSize="sm"
           href={`https://twitter.com/search?q=${encodeURI(
             siteUrl + post.fields.slug
           )}`}
@@ -68,31 +51,50 @@ const BlogTemplate = ({ data, pageContext }) => {
           rel="noopener noreferrer"
         >
           Discuss on Twitter
-        </a>
-      </Comment>
-      {likeCoinId && (
-        <LikeCoin
-          userId={likeCoinId}
-          referrer={`${siteUrl}${post.fields.slug}`}
-        />
-      )}
-      {convertKitFormId && <Signup />}
-      <Nav>
-        <li>
-          {previous && (
-            <Link to={previous.fields.slug} rel="prev">
-              ← {previous.frontmatter.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-            <Link to={next.fields.slug} rel="next">
-              {next.frontmatter.title} →
-            </Link>
-          )}
-        </li>
-      </Nav> */}
+        </Link>
+        <Link
+          color="primary.500"
+          fontSize="sm"
+          href={`https://github.com/andrewmmc/andrewmmc.com/edit/master/content${post.fields.slug}index.md`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Edit on GitHub
+        </Link>
+      </Stack>
+      {convertKitFormId && <Signup my={6} />}
+      <Flex justifyContent="space-between" direction={['column', 'row']} mt={8}>
+        {previous && (
+          <Link
+            as={GatsbyLink}
+            to={previous.fields.slug}
+            color="gray.600"
+            rel="prev"
+            textAlign="left"
+            mb={2}
+          >
+            <Flex alignItems="center">
+              <Icon name="chevron-left" mx={2} />
+              {previous.frontmatter.title}
+            </Flex>
+          </Link>
+        )}
+        {next && (
+          <Link
+            as={GatsbyLink}
+            to={next.fields.slug}
+            color="gray.600"
+            rel="next"
+            textAlign="right"
+            mb={2}
+          >
+            <Flex alignItems="center">
+              {next.frontmatter.title}
+              <Icon name="chevron-right" mx={2} />
+            </Flex>
+          </Link>
+        )}
+      </Flex>
     </Layout>
   );
 };
@@ -102,18 +104,6 @@ BlogTemplate.propTypes = {
   pageContext: shape({}).isRequired,
   location: shape({}).isRequired,
 };
-
-const Info = styled.p``;
-
-const SubInfo = styled.p``;
-
-const Wrapper = styled.div``;
-
-const Nav = styled.ul``;
-
-const Article = styled.article``;
-
-const Comment = styled.div``;
 
 export default BlogTemplate;
 
@@ -137,9 +127,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        category
       }
     }
   }
 `;
-/* eslint-enable react/no-danger */
