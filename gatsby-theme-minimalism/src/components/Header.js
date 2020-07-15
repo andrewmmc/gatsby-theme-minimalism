@@ -3,9 +3,9 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import { Box, Flex, Button, List, ListItem } from '@chakra-ui/core';
 import Logo from './Logo';
 
-const Header = props => {
+const Header = (props) => {
   const data = useStaticQuery(pageQuery);
-  const allPages = data.allSitePage.edges.map(edge => edge.node.path);
+  const allPages = data.allSitePage.edges.map((edge) => edge.node.path);
   const headerItems = [];
 
   if (allPages.includes('/projects/')) {
@@ -23,7 +23,7 @@ const Header = props => {
   }
 
   return (
-    <Box bg="white" borderBottomWidth="1px">
+    <Box bg="white" width="100%" shadow="sm">
       <Flex
         as="nav"
         justify="space-between"
@@ -37,7 +37,7 @@ const Header = props => {
           <Logo />
         </Button>
         <List d="flex">
-          {headerItems.map(item => (
+          {headerItems.map((item) => (
             <ListItem key={item.path}>
               <MenuItem to={item.path}>{item.label}</MenuItem>
             </ListItem>

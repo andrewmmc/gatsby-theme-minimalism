@@ -5,6 +5,7 @@ import { Icon, Text, Stack, Divider, Link, Flex } from '@chakra-ui/core';
 
 import Content from 'components/Content';
 import Heading from 'components/Heading';
+import { BackgroundImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import Signup from 'components/Signup';
@@ -15,11 +16,15 @@ const BlogTemplate = ({ data, pageContext }) => {
   const { siteUrl } = data.site.siteMetadata;
   const { previous, next } = pageContext;
   const post = data.markdownRemark;
-  const { title, date } = post.frontmatter;
+  const { title, date, featuredImage } = post.frontmatter;
   const { readingTime } = post.fields;
 
   return (
-    <Layout>
+    <Layout
+      {...(!!featuredImage && {
+        cover: <BackgroundImage {...featuredImage.childImageSharp} />,
+      })}
+    >
       <Seo
         title={title}
         description={post.excerpt}
@@ -120,6 +125,13 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        featuredImage {
+          childImageSharp {
+            fluid(quality: 95, maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     }
   }

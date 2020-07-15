@@ -13,12 +13,12 @@ const Blog = ({ data }) => {
       <Seo title="Blog" />
       <Heading>Blog</Heading>
       <List mb={4}>
-        {posts.map(({ node }) => {
+        {posts.map(({ node }, idx) => {
           const title = node.frontmatter.title || node.fields.slug;
           const { date } = node.frontmatter;
           const { readingTime } = node.fields;
           return (
-            <ListItem mb={6}>
+            <ListItem mb={6} key={`blog_post_${idx}`}>
               <Stack spacing={1}>
                 <Stack isInline spacing={4} color="gray.500" fontSize="sm">
                   <Text as="time">{date}</Text>

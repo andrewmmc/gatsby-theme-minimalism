@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Flex, IconButton } from '@chakra-ui/core';
+import { Box, Flex, IconButton } from '@chakra-ui/core';
 import {
   FiFacebook,
   FiGithub,
@@ -9,6 +9,7 @@ import {
   FiRss,
   FiInstagram,
 } from 'react-icons/fi';
+import { RiMediumLine } from 'react-icons/ri';
 
 const Footer = (props) => {
   const data = useStaticQuery(pageQuery);
@@ -26,8 +27,8 @@ const Footer = (props) => {
       py="3"
       {...props}
     >
-      <div>© {new Date().getFullYear()}</div>
-      <div>
+      <Box>© {new Date().getFullYear()}</Box>
+      <Box>
         <IconButton
           as="a"
           href="/rss.xml"
@@ -92,18 +93,18 @@ const Footer = (props) => {
             icon={FiLinkedin}
           />
         )}
-        {/* {medium && (
-          <a
+        {medium && (
+          <IconButton
+            as="a"
             href={`https://medium.com/${medium}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Medium"
-          >
-            <Icon icon={faMedium} />
-            <span className="visually-hidden">Medium</span>
-          </a>
-        )} */}
-      </div>
+            variant="ghost"
+            icon={RiMediumLine}
+          />
+        )}
+      </Box>
     </Flex>
   );
 };

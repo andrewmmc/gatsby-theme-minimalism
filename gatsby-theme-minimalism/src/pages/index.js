@@ -1,8 +1,7 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { Link as GatsbyLink, graphql } from 'gatsby';
-import { Box, Heading, Icon, Link, Grid } from '@chakra-ui/core';
-
+import { Heading, Icon, Link, Grid } from '@chakra-ui/core';
 // import Bio from 'components/Bio';
 import Container from 'components/Container';
 import Card from 'components/Card';

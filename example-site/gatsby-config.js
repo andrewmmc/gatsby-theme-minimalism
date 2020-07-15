@@ -12,11 +12,11 @@ module.exports = {
     email: 'no-reply@email.com',
     social: {
       github: 'github',
-      linkedin: '',
+      linkedin: 'linkedin',
       facebook: 'facebook',
       instagram: 'instagram',
       twitter: 'twitter',
-      medium: '',
+      medium: 'medium',
     },
   },
   plugins: [
