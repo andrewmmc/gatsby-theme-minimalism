@@ -30,12 +30,6 @@ const BlogTemplate = ({ data, pageContext }) => {
         <Stack isInline spacing={4} my={4} color="gray.500">
           <Text as="time">{date}</Text>
           <Text as="span">{readingTime.text}</Text>
-          {/* {category &&
-            category.map((cat) => (
-              <Link to={`/category/${cat}`} key={cat}>
-                {cat}
-              </Link>
-            ))} */}
         </Stack>
         <Content mt={8} htmlAst={post.htmlAst} />
       </article>
@@ -102,7 +96,6 @@ const BlogTemplate = ({ data, pageContext }) => {
 BlogTemplate.propTypes = {
   data: shape({}).isRequired,
   pageContext: shape({}).isRequired,
-  location: shape({}).isRequired,
 };
 
 export default BlogTemplate;

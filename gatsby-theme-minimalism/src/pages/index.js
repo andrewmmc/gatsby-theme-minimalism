@@ -1,90 +1,60 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
 import { shape } from 'prop-types';
 import { Link as GatsbyLink, graphql } from 'gatsby';
-import {
-  Box,
-  Button,
-  Heading,
-  Icon,
-  List,
-  ListItem,
-  Link,
-  Text,
-  SimpleGrid,
-  Grid,
-  Stack,
-  PseudoBox,
-} from '@chakra-ui/core';
+import { Box, Heading, Icon, Link, Grid } from '@chakra-ui/core';
 
 // import Bio from 'components/Bio';
 import Container from 'components/Container';
-import { BackgroundImage, FeatureImage } from 'components/Image';
+import Card from 'components/Card';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
-//                 <FeatureImage
-// fluid={
-//   firstPost.node.frontmatter.featuredImage.childImageSharp
-//     .fluid
-// }
-// />
+
 const Index = ({ data }) => {
   // const { showIntro } = useThemeConfig();
   const posts = data.allMarkdownRemark.edges;
   return (
-    <Layout
-      cover={
-        <BackgroundImage fluid={data.featuredImage.childImageSharp.fluid} />
-      }
-      withContainer={false}
-    >
+    <Layout withContainer={false}>
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
-      <Container tabindex="-1" as="main" maxW="4xl">
-        <Box maxW="2xl" m="0 auto" w="100%">
-          <Heading as="h3" size="lg" mb={8}>
-            Recent blog posts
-          </Heading>
-        </Box>
+      123 123
+      <Container maxW="4xl" textAlign="center">
+        <Heading as="h3" size="lg" mb={8}>
+          From the blog
+        </Heading>
         <Grid
           gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
           gridTemplateRows={['1fr 1fr 1fr', '1fr']}
           gap={4}
           mb={8}
         >
-          {posts.map(({ node }) => {
+          {posts.map(({ node }, idx) => {
             const title = node.frontmatter.title || node.fields.slug;
-            const { date } = node.frontmatter;
+            const { date, featuredImage } = node.frontmatter;
             const { readingTime } = node.fields;
             return (
               <Link
                 as={GatsbyLink}
                 to={node.fields.slug}
-                shadow="sm"
                 rounded="lg"
-                bg="white"
+                shadow="sm"
                 _hover={{ shadow: 'md' }}
+                key={`blog_post_${idx}`}
               >
-                <Box overflow="hidden" p={4}>
-                  <Stack spacing={1}>
-                    <Stack isInline spacing={4} color="gray.500" fontSize="sm">
-                      <Text as="time">{date}</Text>
-                      <Text as="span">{readingTime.text}</Text>
-                    </Stack>
-                    <Heading as="h3" size="md">
-                      {title}
-                    </Heading>
-                  </Stack>
-                </Box>
+                <Card
+                  date={date}
+                  readingTime={readingTime.text}
+                  title={title}
+                  {...(!!featuredImage && {
+                    featuredImage: featuredImage.childImageSharp,
+                  })}
+                />
               </Link>
             );
           })}
         </Grid>
-        <Box maxW="2xl" m="0 auto" w="100%">
-          <Button as={GatsbyLink} to="/blog" variant="ghost">
-            View More
-            <Icon name="chevron-right" ml="1" />
-          </Button>
-        </Box>
+        <Link as={GatsbyLink} to="/blog" color="primary.500">
+          View More
+          <Icon name="chevron-right" ml="1" />
+        </Link>
       </Container>
     </Layout>
   );
@@ -98,16 +68,6 @@ export default Index;
 
 export const pageQuery = graphql`
   query {
-    featuredImage: file(
-      sourceInstanceName: { eq: "assets" }
-      relativePath: { eq: "home.jpg" }
-    ) {
-      childImageSharp {
-        fluid(quality: 90, maxWidth: 1920) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
     allMarkdownRemark(
       filter: { fields: { type: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -117,7 +77,6 @@ export const pageQuery = graphql`
         node {
           fields {
             slug
-            type
             readingTime {
               text
             }
@@ -127,7 +86,7 @@ export const pageQuery = graphql`
             title
             featuredImage {
               childImageSharp {
-                fluid(quality: 90, maxWidth: 680) {
+                fluid(quality: 95, maxWidth: 479) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
@@ -143,4 +102,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-/* eslint-enable react/no-danger */

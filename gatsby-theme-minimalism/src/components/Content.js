@@ -11,6 +11,7 @@ import {
   ListItem,
   Text,
 } from '@chakra-ui/core';
+import { Global, css } from '@emotion/core';
 
 import {
   Table,
@@ -72,15 +73,14 @@ const renderAst = new rehypeReact({
 const Content = ({ htmlAst, ...props }) => {
   return (
     <Box {...props}>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
+      <Global
+        styles={css`
           pre.grvsc-container {
             margin: 2rem 0;
-            box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+              0 1px 2px 0 rgba(0, 0, 0, 0.06);
           }
-`,
-        }}
+        `}
       />
       {renderAst(htmlAst)}
     </Box>
