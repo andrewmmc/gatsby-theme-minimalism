@@ -1,24 +1,52 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
 import { shape } from 'prop-types';
-import { graphql } from 'gatsby';
-import { Heading } from '@chakra-ui/core';
-
-import { BackgroundImage } from 'components/Image';
+import { Link as GatsbyLink, graphql } from 'gatsby';
+import { Box, Link, Grid } from '@chakra-ui/core';
+import Container from 'components/Container';
+import Card from 'components/Card';
+import Heading from 'components/Heading';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 
 const Projects = ({ data }) => {
-  const post = data.markdownRemark;
+  const posts = data.allMarkdownRemark.edges;
   return (
-    <Layout
-      cover={
-        <BackgroundImage fluid={data.featuredImage.childImageSharp.fluid} />
-      }
-    >
-      <Seo title={post.frontmatter.title} description={post.excerpt} />
-      <Heading as="h1">{post.frontmatter.title}</Heading>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
+    <Layout withContainer={false}>
+      <Seo title="Projects" />
+      <Container maxW="4xl">
+        <Box maxW="2xl" m="0 auto" px={[, 4]}>
+          <Heading>Projects</Heading>
+        </Box>
+        <Grid
+          gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
+          gridTemplateRows={['1fr 1fr 1fr', '1fr']}
+          gap={4}
+          mb={8}
+        >
+          {posts.map(({ node }, idx) => {
+            const title = node.frontmatter.title || node.fields.slug;
+            const { date, featuredImage } = node.frontmatter;
+            return (
+              <Link
+                as={GatsbyLink}
+                to={node.fields.slug}
+                rounded="lg"
+                shadow="sm"
+                _hover={{ shadow: 'md' }}
+                key={`projects_post_${idx}`}
+              >
+                <Card
+                  date={date}
+                  title={title}
+                  {...(!!featuredImage && {
+                    featuredImage: featuredImage.childImageSharp,
+                  })}
+                />
+              </Link>
+            );
+          })}
+        </Grid>
+      </Container>
     </Layout>
   );
 };
@@ -31,24 +59,30 @@ export default Projects;
 
 export const pageQuery = graphql`
   query {
-    featuredImage: file(
-      sourceInstanceName: { eq: "assets" }
-      relativePath: { eq: "projects.jpg" }
+    allMarkdownRemark(
+      filter: { fields: { type: { eq: "projects" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1000
     ) {
-      childImageSharp {
-        fluid(quality: 90, maxWidth: 1920) {
-          ...GatsbyImageSharpFluid_withWebp
+      edges {
+        node {
+          excerpt(truncate: true)
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "YYYY")
+            title
+            featuredImage {
+              childImageSharp {
+                fluid(quality: 95, maxWidth: 479) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
         }
-      }
-    }
-    markdownRemark(fields: { slug: { eq: "/projects/" } }) {
-      id
-      excerpt(truncate: true)
-      html
-      frontmatter {
-        title
       }
     }
   }
 `;
-/* eslint-enable react/no-danger */

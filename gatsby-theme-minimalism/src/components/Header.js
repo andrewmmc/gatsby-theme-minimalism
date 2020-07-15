@@ -11,7 +11,14 @@ const Header = (props) => {
   if (allPages.includes('/projects/')) {
     headerItems.unshift({
       path: '/projects',
-      label: data.projects.frontmatter.title,
+      label: 'Projects',
+    });
+  }
+
+  if (allPages.includes('/blog/')) {
+    headerItems.unshift({
+      path: '/blog',
+      label: 'Blog',
     });
   }
 
@@ -68,11 +75,6 @@ const pageQuery = graphql`
         node {
           path
         }
-      }
-    }
-    projects: markdownRemark(fields: { slug: { eq: "/projects/" } }) {
-      frontmatter {
-        title
       }
     }
     about: markdownRemark(fields: { slug: { eq: "/about/" } }) {

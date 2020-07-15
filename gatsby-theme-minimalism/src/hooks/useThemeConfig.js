@@ -7,11 +7,7 @@ const useThemeConfig = () => {
       themeConfig(id: { eq: "gatsby-theme-minimalism" }) {
         siteName
         convertKitFormId
-        likeCoinId
         mapId
-        compactMode
-        darkTheme
-        showIntro
       }
     }
   `);

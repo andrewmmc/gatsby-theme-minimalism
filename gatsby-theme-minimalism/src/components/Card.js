@@ -10,14 +10,15 @@ const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
       bg="white"
       textAlign="left"
       height="100%"
+      minH="300px"
       overflow="hidden"
       {...props}
     >
       {featuredImage && <BackgroundImage height={150} {...featuredImage} />}
       <Stack spacing={1} p={6}>
         <Stack isInline spacing={4} color="gray.500" fontSize="sm">
-          <Text as="time">{date}</Text>
-          <Text as="span">{readingTime}</Text>
+          {date && <Text as="time">{date}</Text>}
+          {readingTime && <Text as="span">{readingTime}</Text>}
         </Stack>
         <Heading as="h3" size="md">
           {title}
@@ -29,9 +30,13 @@ const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
 
 Card.propTypes = {
   date: string.isRequired,
-  readingTime: string.isRequired,
+  readingTime: string,
   title: string.isRequired,
   featuredImage: shape({}).isRequired,
+};
+
+Card.defaultProps = {
+  readingTime: undefined,
 };
 
 export default Card;

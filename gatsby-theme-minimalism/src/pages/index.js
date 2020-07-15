@@ -2,19 +2,20 @@ import React from 'react';
 import { shape } from 'prop-types';
 import { Link as GatsbyLink, graphql } from 'gatsby';
 import { Heading, Icon, Link, Grid } from '@chakra-ui/core';
-// import Bio from 'components/Bio';
+import Bio from 'components/Bio';
 import Container from 'components/Container';
 import Card from 'components/Card';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 
 const Index = ({ data }) => {
-  // const { showIntro } = useThemeConfig();
   const posts = data.allMarkdownRemark.edges;
   return (
     <Layout withContainer={false}>
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
-      123 123
+      <Container>
+        <Bio />
+      </Container>
       <Container maxW="4xl" textAlign="center">
         <Heading as="h3" size="lg" mb={8}>
           From the blog

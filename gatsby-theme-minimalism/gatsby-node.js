@@ -5,12 +5,19 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const blogTemplate = require.resolve('./src/templates/blog.js');
+  const projectsTemplate = require.resolve('./src/templates/projects.js');
 
-  // Create blog pages
-  const blogResults = await graphql(blogQuery);
+  const [blogResults, projectsResults] = await Promise.all([
+    graphql(blogQuery),
+    graphql(projectsQuery),
+  ]);
 
   if (blogResults.errors) {
     throw blogResults.errors;
+  }
+
+  if (projectsResults.errors) {
+    throw projectsResults.errors;
   }
 
   const blogPosts = blogResults.data.allMarkdownRemark.edges;
@@ -30,12 +37,28 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const projectPosts = projectsResults.data.allMarkdownRemark.edges;
+  projectPosts.forEach((post, index) => {
+    const { slug } = post.node.fields;
+    const previous =
+      index === projectPosts.length - 1 ? null : projectPosts[index + 1].node;
+    const next = index === 0 ? null : projectPosts[index - 1].node;
+    createPage({
+      path: slug,
+      component: projectsTemplate,
+      context: {
+        slug,
+        previous,
+        next,
+      },
+    });
+  });
+
   return true;
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-
   fmImagesToRelative(node);
 
   if (node.internal.type === 'MarkdownRemark') {
@@ -67,12 +90,8 @@ exports.createSchemaCustomization = ({ actions }) => {
   const typeDefs = `
     type ThemeConfig implements Node {
       siteName: String
-      convertKitFormId: String
       likeCoinId: String
       mapId: String
-      darkTheme: Boolean
-      compactMode: Boolean
-      showIntro: Boolean
     }
 
     type Social implements Node {
@@ -100,6 +119,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       featuredImage: File @fileByRelativePath
       category: [String]
+      description: String
+      canonical: String
     }
   `;
   createTypes(typeDefs);
@@ -126,6 +147,28 @@ const blogQuery = `
   {
     allMarkdownRemark(
       filter: { fields: { type: { eq: "blog" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1000
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+            type
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+const projectsQuery = `
+  {
+    allMarkdownRemark(
+      filter: { fields: { type: { eq: "projects" } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 1000
     ) {

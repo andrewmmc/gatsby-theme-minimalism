@@ -1,30 +1,20 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { graphql, Link as GatsbyLink } from 'gatsby';
-import { Icon, Text, Stack, Divider, Link, Flex } from '@chakra-ui/core';
+import { Icon, Text, Stack, Link, Flex } from '@chakra-ui/core';
 
 import Content from 'components/Content';
 import Heading from 'components/Heading';
-// import { BackgroundImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
-import Signup from 'components/Signup';
-import useThemeConfig from 'hooks/useThemeConfig';
 
-const BlogTemplate = ({ data, pageContext }) => {
-  const { convertKitFormId } = useThemeConfig();
-  const { siteUrl } = data.site.siteMetadata;
+const ProjectsTemplate = ({ data, pageContext }) => {
   const { previous, next } = pageContext;
   const post = data.markdownRemark;
-  const { title, date, featuredImage } = post.frontmatter;
-  const { readingTime } = post.fields;
+  const { title, date } = post.frontmatter;
 
   return (
-    <Layout
-    // {...(!!featuredImage && {
-    //   cover: <BackgroundImage {...featuredImage.childImageSharp} />,
-    // })}
-    >
+    <Layout>
       <Seo
         title={title}
         description={post.excerpt}
@@ -34,34 +24,9 @@ const BlogTemplate = ({ data, pageContext }) => {
         <Heading>{title}</Heading>
         <Stack isInline spacing={4} my={4} color="gray.500">
           <Text as="time">{date}</Text>
-          <Text as="span">{readingTime.text}</Text>
         </Stack>
         <Content mt={8} htmlAst={post.htmlAst} />
       </article>
-      <Divider borderColor="gray.400" mt={8} mb={6} />
-      <Stack isInline spacing={4}>
-        <Link
-          color="primary.500"
-          fontSize="sm"
-          href={`https://twitter.com/search?q=${encodeURI(
-            siteUrl + post.fields.slug
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Discuss on Twitter
-        </Link>
-        <Link
-          color="primary.500"
-          fontSize="sm"
-          href={`https://github.com/andrewmmc/andrewmmc.com/edit/master/content${post.fields.slug}index.md`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Edit on GitHub
-        </Link>
-      </Stack>
-      {convertKitFormId && <Signup my={6} />}
       <Flex justifyContent="space-between" direction={['column', 'row']} mt={8}>
         {previous && (
           <Link
@@ -98,15 +63,15 @@ const BlogTemplate = ({ data, pageContext }) => {
   );
 };
 
-BlogTemplate.propTypes = {
+ProjectsTemplate.propTypes = {
   data: shape({}).isRequired,
   pageContext: shape({}).isRequired,
 };
 
-export default BlogTemplate;
+export default ProjectsTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query ProjectBySlug($slug: String!) {
     site {
       siteMetadata {
         siteUrl
@@ -118,20 +83,10 @@ export const pageQuery = graphql`
       htmlAst
       fields {
         slug
-        readingTime {
-          text
-        }
       }
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
-        featuredImage {
-          childImageSharp {
-            fluid(quality: 95, maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
+        date(formatString: "YYYY")
       }
     }
   }
