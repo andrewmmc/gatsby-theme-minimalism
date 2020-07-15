@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { shape } from 'prop-types';
-import { Link, graphql } from 'gatsby';
+import { Link as GatsbyLink, graphql } from 'gatsby';
 import {
   Box,
   Button,
@@ -9,95 +9,83 @@ import {
   Icon,
   List,
   ListItem,
+  Link,
   Text,
   SimpleGrid,
+  Grid,
   Stack,
+  PseudoBox,
 } from '@chakra-ui/core';
 
 // import Bio from 'components/Bio';
+import Container from 'components/Container';
 import { BackgroundImage, FeatureImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
-
+//                 <FeatureImage
+// fluid={
+//   firstPost.node.frontmatter.featuredImage.childImageSharp
+//     .fluid
+// }
+// />
 const Index = ({ data }) => {
   // const { showIntro } = useThemeConfig();
   const posts = data.allMarkdownRemark.edges;
-  const [firstPost, ...remainPosts] = posts;
   return (
     <Layout
       cover={
         <BackgroundImage fluid={data.featuredImage.childImageSharp.fluid} />
       }
+      withContainer={false}
     >
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
-      {/* {showIntro && <Bio />} */}
-      <Stack spacing={12}>
-        <SimpleGrid columns={[1, 2]} spacing={8}>
-          {firstPost.node.frontmatter.featuredImage && (
-            <Box>
+      <Container tabindex="-1" as="main" maxW="4xl">
+        <Box maxW="2xl" m="0 auto" w="100%">
+          <Heading as="h3" size="lg" mb={8}>
+            Recent blog posts
+          </Heading>
+        </Box>
+        <Grid
+          gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
+          gridTemplateRows={['1fr 1fr 1fr', '1fr']}
+          gap={4}
+          mb={8}
+        >
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug;
+            const { date } = node.frontmatter;
+            const { readingTime } = node.fields;
+            return (
               <Link
-                to={firstPost.node.fields.slug}
-                aria-label={firstPost.node.frontmatter.title}
+                as={GatsbyLink}
+                to={node.fields.slug}
+                shadow="sm"
+                rounded="lg"
+                bg="white"
+                _hover={{ shadow: 'md' }}
               >
-                <FeatureImage
-                  fluid={
-                    firstPost.node.frontmatter.featuredImage.childImageSharp
-                      .fluid
-                  }
-                />
-              </Link>
-            </Box>
-          )}
-          <Box d="flex" justifyContent="center" flexDir="column">
-            <Stack isInline spacing={4} color="gray.500" fontSize="sm">
-              <Text as="time">{firstPost.node.frontmatter.date}</Text>
-              <Text as="span">{firstPost.node.fields.readingTime.text}</Text>
-            </Stack>
-            <Heading as="h2" size="xl" mt={1} isTruncated>
-              <Link to={firstPost.node.fields.slug}>
-                {firstPost.node.frontmatter.title}
-              </Link>
-            </Heading>
-            {firstPost.node.excerpt && (
-              <Text mt={2}>{firstPost.node.excerpt}</Text>
-            )}
-          </Box>
-        </SimpleGrid>
-        <SimpleGrid columns={[1, 2]} spacing={8}>
-          <Box>
-            <Heading as="h3" size="lg">
-              Recent blog posts
-            </Heading>
-            <List my={4}>
-              {remainPosts.map(({ node }) => {
-                const title = node.frontmatter.title || node.fields.slug;
-                const { date } = node.frontmatter;
-                return (
-                  <ListItem mb={6}>
-                    <Stack spacing={1}>
-                      <Text as="time" color="gray.500" fontSize="sm">
-                        {date}
-                      </Text>
-                      <Heading as="h3" size="md">
-                        <Link to={node.fields.slug}>{title}</Link>
-                      </Heading>
+                <Box overflow="hidden" p={4}>
+                  <Stack spacing={1}>
+                    <Stack isInline spacing={4} color="gray.500" fontSize="sm">
+                      <Text as="time">{date}</Text>
+                      <Text as="span">{readingTime.text}</Text>
                     </Stack>
-                  </ListItem>
-                );
-              })}
-            </List>
-            <Button as={Link} to="/blog" variant="ghost">
-              View More
-              <Icon name="chevron-right" ml="1" />
-            </Button>
-          </Box>
-          <Box>
-            <Heading as="h3" size="lg">
-              Recent notes
-            </Heading>
-          </Box>
-        </SimpleGrid>
-      </Stack>
+                    <Heading as="h3" size="md">
+                      {title}
+                    </Heading>
+                  </Stack>
+                </Box>
+              </Link>
+            );
+          })}
+        </Grid>
+        <Box maxW="2xl" m="0 auto" w="100%">
+          <Button as={GatsbyLink} to="/blog" variant="ghost">
+            View More
+            <Icon name="chevron-right" ml="1" />
+          </Button>
+        </Box>
+      </Container>
     </Layout>
   );
 };
@@ -123,11 +111,10 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       filter: { fields: { type: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 4
+      limit: 3
     ) {
       edges {
         node {
-          excerpt(truncate: true)
           fields {
             slug
             type
@@ -138,7 +125,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            category
             featuredImage {
               childImageSharp {
                 fluid(quality: 90, maxWidth: 680) {

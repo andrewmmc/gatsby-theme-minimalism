@@ -6,13 +6,17 @@ import Header from './Header';
 import Container from './Container';
 import Footer from './Footer';
 
-const Layout = ({ cover, children, ...props }) => (
-  <Box bg="gray.50">
+const Layout = ({ cover, withContainer = true, children, ...props }) => (
+  <Box bg="gray.50" minHeight="100vh">
     <Header />
     {cover}
-    <Container tabindex="-1" as="main" {...props}>
-      {children}
-    </Container>
+    {withContainer ? (
+      <Container tabindex="-1" as="main" {...props}>
+        {children}
+      </Container>
+    ) : (
+      children
+    )}
     <Footer />
   </Box>
 );
