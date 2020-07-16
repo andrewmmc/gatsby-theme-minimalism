@@ -1,19 +1,30 @@
 import React from 'react';
 import { graphql, useStaticQuery, Link as GatsbyLink } from 'gatsby';
-import { Text, Grid, Flex, Link, Icon } from '@chakra-ui/core';
+import { Text, Flex, Link, Icon } from '@chakra-ui/core';
+import styled from '@emotion/styled';
 import Image from 'gatsby-image';
 import Heading from 'components/Heading';
+import { customTheme } from '../themes/styles';
 
 const Bio = () => {
+  const { breakpoints } = customTheme;
+
   const data = useStaticQuery(pageQuery);
   const { author, authorDescription } = data.site.siteMetadata;
+  const avatarSources = [
+    data.mobileAvatar.childImageSharp.fixed,
+    {
+      ...data.tabletAvatar.childImageSharp.fixed,
+      media: `(min-width: ${breakpoints[1]})`,
+    },
+  ];
+
   return (
-    <Grid
-      gridTemplateColumns={['1fr', '2fr 1fr']}
-      gridTemplateRows={['1fr', '1fr']}
-      gap={4}
+    <Flex
+      flexDirection={['column-reverse', 'row']}
+      justifyContent="space-between"
     >
-      <Flex flexDirection="column" justifyContent="center" height="100%">
+      <Flex flexDirection="column" justifyContent="center">
         <Heading>Hi, I'm {author}.</Heading>
         {authorDescription && (
           <Text color="gray.600" fontSize="lg" mb={6}>
@@ -21,35 +32,39 @@ const Bio = () => {
           </Text>
         )}
         <Link as={GatsbyLink} to="/about" color="primary.500">
-          Read More
+          About Me
           <Icon name="chevron-right" ml="1" />
         </Link>
       </Flex>
-      <Flex
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="flex-end"
-        height="100%"
-        display={['none', 'flex']}
-      >
-        <Image
-          fixed={data.avatar.childImageSharp.fixed}
-          alt={author}
-          style={{ borderRadius: '50%' }}
-        />
+      <Flex alignSelf={['flex-start', 'center']} pb={[4, 0]}>
+        <StyledAvatar fixed={avatarSources} alt={author} />
       </Flex>
-    </Grid>
+    </Flex>
   );
 };
 
+const StyledAvatar = styled(Image)`
+  border-radius: 50%;
+`;
+
 const pageQuery = graphql`
   query BioQuery {
-    avatar: file(
+    mobileAvatar: file(
       sourceInstanceName: { eq: "assets" }
       relativePath: { eq: "profile.jpg" }
     ) {
       childImageSharp {
-        fixed(width: 150, height: 150) {
+        fixed(width: 75, height: 75) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    tabletAvatar: file(
+      sourceInstanceName: { eq: "assets" }
+      relativePath: { eq: "profile.jpg" }
+    ) {
+      childImageSharp {
+        fixed(width: 125, height: 125) {
           ...GatsbyImageSharpFixed
         }
       }

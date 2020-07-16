@@ -13,7 +13,7 @@ const Index = ({ data }) => {
   return (
     <Layout withContainer={false}>
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
-      <Container>
+      <Container pb={0}>
         <Bio />
       </Container>
       <Container maxW="4xl" textAlign="center">
@@ -52,7 +52,7 @@ const Index = ({ data }) => {
           })}
         </Grid>
         <Link as={GatsbyLink} to="/blog" color="primary.500">
-          View More
+          Read More
           <Icon name="chevron-right" ml="1" />
         </Link>
       </Container>

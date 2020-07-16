@@ -19,6 +19,7 @@ const Footer = (props) => {
   return (
     <Flex
       as="footer"
+      flexWrap="nowrap"
       justify="space-between"
       alignItems="center"
       maxW="2xl"
@@ -27,8 +28,16 @@ const Footer = (props) => {
       py="3"
       {...props}
     >
-      <Box>© {new Date().getFullYear()}</Box>
-      <Box>
+      <Box flexBasis="30%" height="100%">
+        © {new Date().getFullYear()}
+      </Box>
+      <Box
+        flexBasis="70%"
+        height="100%"
+        overflowX="hidden"
+        whiteSpace="nowrap"
+        textAlign="right"
+      >
         <IconButton
           as="a"
           href="/rss.xml"

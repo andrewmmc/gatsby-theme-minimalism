@@ -4,7 +4,7 @@
 
 Welcome to `gatsby-theme-minimalism`, a Gatsby theme by [Andrew Mok](https://andrewmmc.com). It's a simple Gatsby theme for blog and static website. Use it easily to create contents by `Markdown`.
 
-![Demo](https://github.com/andrewmmc/gatsby-theme-minimalism/raw/master/gatsby-theme-minimalism/README1.png)
+<!-- ![Demo](https://github.com/andrewmmc/gatsby-theme-minimalism/raw/master/gatsby-theme-minimalism/README1.png) -->
 
 ## Preview
 
@@ -25,21 +25,21 @@ Edit `gatsby-config.js` and replace `siteMetadata` by the following configs:
 ```js
 module.exports = {
   siteMetadata: {
-    title: "",
-    author: "Author Name",
-    authorDescription: "Author description here!",
-    description: "Site description",
-    siteUrl: "https://examplesite.com",
+    title: '',
+    author: 'Author Name',
+    authorDescription: 'Author description here!',
+    description: 'Site description',
+    siteUrl: 'https://examplesite.com',
     seoKeywords: [],
-    location: "Hong Kong",
-    email: "no-reply@email.com",
+    location: 'Hong Kong',
+    email: 'no-reply@email.com',
     social: {
-      github: "github",
-      linkedin: "",
-      facebook: "facebook",
-      instagram: "instagram",
-      twitter: "twitter",
-      medium: "",
+      github: 'github',
+      linkedin: '',
+      facebook: 'facebook',
+      instagram: 'instagram',
+      twitter: 'twitter',
+      medium: '',
     },
   },
 };
@@ -51,13 +51,13 @@ And add the following configs to `plugins` array:
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-theme-minimalism",
+      resolve: 'gatsby-theme-minimalism',
       // You can edit the following options, or ignore them if you don't care.
       // Note that siteName is required for RSS.
       options: {
-        siteName: "",
-        convertKitFormId: "",
-        mapId: "",
+        siteName: '',
+        convertKitFormId: '',
+        mapId: '',
       },
     },
   ],

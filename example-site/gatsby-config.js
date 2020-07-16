@@ -25,10 +25,7 @@ module.exports = {
       options: {
         siteName,
         convertKitFormId: '',
-        likeCoinId: '',
         mapId: '',
-        darkTheme: false,
-        showIntro: false,
       },
     },
   ],
