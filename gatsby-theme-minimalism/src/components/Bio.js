@@ -24,7 +24,11 @@ const Bio = () => {
       flexDirection={['column-reverse', 'row']}
       justifyContent="space-between"
     >
-      <Flex flexDirection="column" justifyContent="center">
+      <Flex
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="flex-start"
+      >
         <Heading>Hi, I'm {author}.</Heading>
         {authorDescription && (
           <Text color="gray.600" fontSize="lg" mb={6}>
@@ -36,7 +40,7 @@ const Bio = () => {
           <Icon name="chevron-right" ml="1" />
         </Link>
       </Flex>
-      <Flex alignSelf={['flex-start', 'center']} pb={[4, 0]}>
+      <Flex alignSelf={['flex-start', 'center']} pb={[4, 0]} pl={[0, 4]}>
         <StyledAvatar fixed={avatarSources} alt={author} />
       </Flex>
     </Flex>

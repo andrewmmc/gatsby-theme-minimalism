@@ -25,7 +25,7 @@ import {
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   components: {
-    h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
+    h1: (props) => <Heading as="h1" size="lg" my={4} {...props} />,
     h2: (props) => <Heading as="h2" size="lg" my={4} {...props} />,
     h3: (props) => <Heading as="h3" size="md" my={4} {...props} />,
     h4: (props) => <Heading as="h4" size="sm" my={4} {...props} />,
@@ -54,13 +54,18 @@ const renderAst = new rehypeReact({
       if (props.href && props.href.startsWith('http')) {
         const { children, ...remainProps } = props;
         return (
-          <Link color="primary.500" {...remainProps} isExternal>
+          <Link
+            color="primary.500"
+            {...remainProps}
+            overflowWrap="break-word"
+            isExternal
+          >
             {children}
             <Icon name="external-link" mx={2} mb={1} />
           </Link>
         );
       }
-      return <Link color="primary.500" {...props} />;
+      return <Link color="primary.500" overflowWrap="break-word" {...props} />;
     },
     img: (props) => <Box as="img" rounded="sm" {...props} />,
     figure: (props) => <Box as="figure" textAlign="center" my={4} {...props} />,
@@ -84,6 +89,8 @@ const Content = ({ htmlAst, ...props }) => {
           span.gatsby-resp-image-wrapper {
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
               0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
           }
         `}
       />

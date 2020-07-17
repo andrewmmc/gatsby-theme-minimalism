@@ -17,7 +17,7 @@ const Index = ({ data }) => {
         <Bio />
       </Container>
       <Container maxW="4xl" textAlign="center">
-        <Heading as="h3" size="lg" mb={8}>
+        <Heading as="h2" size="lg" mb={8}>
           From the blog
         </Heading>
         <Grid

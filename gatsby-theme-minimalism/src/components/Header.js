@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby';
 import {
   Box,
   Flex,
   Button,
   IconButton,
+  Link,
   List,
   ListItem,
   Drawer,
@@ -61,15 +62,16 @@ const Header = (props) => {
       <Flex
         as="nav"
         justify="space-between"
+        alignItems="center"
         maxW="2xl"
         m="0 auto"
         px="4"
         py="3"
         {...props}
       >
-        <Button as={Link} variant="ghost" to="/">
+        <Link as={GatsbyLink} to="/">
           <Logo />
-        </Button>
+        </Link>
         <IconButton
           ref={btnRef}
           aria-label="Menu"
@@ -115,7 +117,7 @@ const MenuItem = ({ to, children, ...props }) => {
 
   return (
     <Button
-      as={Link}
+      as={GatsbyLink}
       to={to}
       variant="ghost"
       fontWeight="normal"

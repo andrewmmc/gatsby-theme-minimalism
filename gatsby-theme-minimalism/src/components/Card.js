@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, shape } from 'prop-types';
-import { Box, Heading, Text, Stack } from '@chakra-ui/core';
+import { Box, Flex, Heading, Text, Stack } from '@chakra-ui/core';
 import { BackgroundImage } from 'components/Image';
 
 const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
@@ -16,10 +16,18 @@ const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
     >
       {featuredImage && <BackgroundImage height={150} {...featuredImage} />}
       <Stack spacing={1} p={6}>
-        <Stack isInline spacing={4} color="gray.500" fontSize="sm">
-          {date && <Text as="time">{date}</Text>}
+        <Flex
+          color="gray.500"
+          fontSize="sm"
+          flexDirection={['row', 'column', 'column', 'row']}
+        >
+          {date && (
+            <Text as="time" mr={4}>
+              {date}
+            </Text>
+          )}
           {readingTime && <Text as="span">{readingTime}</Text>}
-        </Stack>
+        </Flex>
         <Heading as="h3" size="md">
           {title}
         </Heading>
