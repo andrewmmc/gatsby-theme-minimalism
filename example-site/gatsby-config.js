@@ -24,7 +24,7 @@ module.exports = {
       resolve: 'gatsby-theme-minimalism',
       options: {
         siteName,
-        convertKitFormId: '',
+        convertKitFormId: '123',
         mapId: '',
       },
     },

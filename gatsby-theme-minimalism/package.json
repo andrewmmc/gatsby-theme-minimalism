@@ -1,7 +1,7 @@
 {
   "name": "gatsby-theme-minimalism",
   "description": "A simple Gatsby theme for blog and static website. Use it easily to create contents by Markdown.",
-  "version": "2.0.0-beta4",
+  "version": "2.0.0-beta5",
   "author": "Andrew Mok <hello@andrewmmc.com>",
   "license": "MIT",
   "keywords": [
@@ -21,6 +21,7 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-plugin-sharp": "^2.6.19",
+    "gatsby-remark-autolink-headers": "^2.3.11",
     "gatsby-remark-copy-linked-files": "^2.3.11",
     "gatsby-remark-images": "^3.3.18",
     "gatsby-remark-reading-time": "^1.1.0",

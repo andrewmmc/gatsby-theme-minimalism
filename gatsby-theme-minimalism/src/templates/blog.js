@@ -5,7 +5,6 @@ import { Icon, Text, Stack, Divider, Link, Flex } from '@chakra-ui/core';
 
 import Content from 'components/Content';
 import Heading from 'components/Heading';
-// import { BackgroundImage } from 'components/Image';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 import Signup from 'components/Signup';
@@ -16,15 +15,11 @@ const BlogTemplate = ({ data, pageContext }) => {
   const { siteUrl } = data.site.siteMetadata;
   const { previous, next } = pageContext;
   const post = data.markdownRemark;
-  const { title, date, featuredImage } = post.frontmatter;
+  const { title, date } = post.frontmatter;
   const { readingTime } = post.fields;
 
   return (
-    <Layout
-    // {...(!!featuredImage && {
-    //   cover: <BackgroundImage {...featuredImage.childImageSharp} />,
-    // })}
-    >
+    <Layout>
       <Seo
         title={title}
         description={post.excerpt}
@@ -59,6 +54,9 @@ const BlogTemplate = ({ data, pageContext }) => {
           rel="noopener noreferrer"
         >
           Edit on GitHub
+        </Link>
+        <Link as={GatsbyLink} color="primary.500" fontSize="sm" to="/blog">
+          Back to Blog
         </Link>
       </Stack>
       {convertKitFormId && <Signup my={6} />}
@@ -125,13 +123,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        featuredImage {
-          childImageSharp {
-            fluid(quality: 95, maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
       }
     }
   }

@@ -33,6 +33,9 @@ module.exports = (options) => {
         options: {
           plugins: [
             {
+              resolve: `gatsby-remark-autolink-headers`,
+            },
+            {
               resolve: `gatsby-remark-vscode`,
               options: {
                 theme: 'Light+ (default light)',
