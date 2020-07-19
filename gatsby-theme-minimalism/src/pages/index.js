@@ -1,61 +1,47 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { Link as GatsbyLink, graphql } from 'gatsby';
-import { Heading, Icon, Link, Grid } from '@chakra-ui/core';
+import { Icon, Link, List, ListItem, Stack, Text } from '@chakra-ui/core';
 import Bio from 'components/Bio';
-import Container from 'components/Container';
-import Card from 'components/Card';
+import Heading from 'components/Heading';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 
 const Index = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
-    <Layout withContainer={false}>
+    <Layout>
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
-      <Container pb={0}>
-        <Bio />
-      </Container>
-      <Container maxW="4xl" textAlign="center">
-        <Heading as="h2" size="lg" mb={8}>
-          From the blog
-        </Heading>
-        <Grid
-          gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
-          gridTemplateRows={['1fr 1fr 1fr', '1fr']}
-          gap={4}
-          mb={8}
-        >
-          {posts.map(({ node }, idx) => {
-            const title = node.frontmatter.title || node.fields.slug;
-            const { date, featuredImage } = node.frontmatter;
-            const { readingTime } = node.fields;
-            return (
-              <Link
-                as={GatsbyLink}
-                to={node.fields.slug}
-                rounded="lg"
-                shadow="sm"
-                _hover={{ shadow: 'md' }}
-                key={`blog_post_${idx}`}
-              >
-                <Card
-                  date={date}
-                  readingTime={readingTime.text}
-                  title={title}
-                  {...(!!featuredImage && {
-                    featuredImage: featuredImage.childImageSharp,
-                  })}
-                />
-              </Link>
-            );
-          })}
-        </Grid>
-        <Link as={GatsbyLink} to="/blog" color="primary.500">
-          Read More
-          <Icon name="chevron-right" ml="1" />
-        </Link>
-      </Container>
+      <Bio mb={12} />
+      <Heading size="lg" mb={6}>
+        Latest blog posts
+      </Heading>
+      <List mb={4}>
+        {posts.map(({ node }, idx) => {
+          const title = node.frontmatter.title || node.fields.slug;
+          const { date } = node.frontmatter;
+          const { readingTime } = node.fields;
+          return (
+            <ListItem mb={6} key={`blog_post_${idx}`}>
+              <Stack spacing={1}>
+                <Stack isInline spacing={4} color="gray.500" fontSize="sm">
+                  <Text as="time">{date}</Text>
+                  <Text as="span">{readingTime.text}</Text>
+                </Stack>
+                <Heading as="h3" size="md">
+                  <Link as={GatsbyLink} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </Heading>
+              </Stack>
+            </ListItem>
+          );
+        })}
+      </List>
+      <Link as={GatsbyLink} to="/blog" color="primary.500">
+        Read More
+        <Icon name="chevron-right" ml="1" />
+      </Link>
     </Layout>
   );
 };
@@ -71,7 +57,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       filter: { fields: { type: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
+      limit: 5
     ) {
       edges {
         node {
@@ -84,13 +70,6 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            featuredImage {
-              childImageSharp {
-                fluid(quality: 95, maxWidth: 479) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
           }
         }
       }

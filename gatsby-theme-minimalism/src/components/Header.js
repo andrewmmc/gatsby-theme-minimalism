@@ -27,7 +27,7 @@ const Header = (props) => {
   const { github } = social || {};
 
   const allPages = data.allSitePage.edges.map((edge) => edge.node.path);
-  const headerItems = [];
+  const headerItems = [{ path: '/', label: 'Home' }];
 
   if (allPages.includes('/blog/')) {
     headerItems.push({

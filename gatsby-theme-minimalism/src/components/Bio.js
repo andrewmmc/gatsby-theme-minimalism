@@ -6,7 +6,7 @@ import Image from 'gatsby-image';
 import Heading from 'components/Heading';
 import { customTheme } from '../themes/styles';
 
-const Bio = () => {
+const Bio = (props) => {
   const { breakpoints } = customTheme;
 
   const data = useStaticQuery(pageQuery);
@@ -23,6 +23,7 @@ const Bio = () => {
     <Flex
       flexDirection={['column-reverse', 'row']}
       justifyContent="space-between"
+      {...props}
     >
       <Flex
         flexDirection="column"
@@ -31,7 +32,7 @@ const Bio = () => {
       >
         <Heading>Hi, I'm {author}.</Heading>
         {authorDescription && (
-          <Text color="gray.600" fontSize="lg" mb={6}>
+          <Text color="gray.600" fontSize="lg" mb={4}>
             {authorDescription}
           </Text>
         )}

@@ -55,9 +55,6 @@ const BlogTemplate = ({ data, pageContext }) => {
         >
           Edit on GitHub
         </Link>
-        <Link as={GatsbyLink} color="primary.500" fontSize="sm" to="/blog">
-          Back to Blog
-        </Link>
       </Stack>
       {convertKitFormId && <Signup my={6} />}
       <Flex justifyContent="space-between" direction={['column', 'row']} mt={8}>
