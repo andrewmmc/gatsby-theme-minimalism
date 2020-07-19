@@ -81,6 +81,8 @@ const renderAst = new rehypeReact({
         py={0}
         status="info"
         variant="left-accent"
+        flexDirection="column"
+        alignItems="flex-start"
         {...props}
       />
     ),
