@@ -95,7 +95,7 @@ const Blog = ({ data }) => {
                     <Text as="time">{date}</Text>
                     <Text as="span">{readingTime.text}</Text>
                   </Stack>
-                  <Heading as="h3" size="md">
+                  <Heading as="h2" size="md">
                     <Link as={GatsbyLink} to={node.fields.slug}>
                       {title}
                     </Link>

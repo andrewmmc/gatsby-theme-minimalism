@@ -5,8 +5,6 @@ import {
   Box,
   Code,
   Divider,
-  Heading,
-  PseudoBox,
   Icon,
   Link,
   List,
@@ -15,6 +13,7 @@ import {
 } from '@chakra-ui/core';
 import { Global, css } from '@emotion/core';
 
+import { LinkedHeading } from './Heading';
 import {
   Table,
   TableHead,
@@ -27,12 +26,12 @@ import {
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   components: {
-    h1: (props) => <Heading as="h1" size="lg" mt={8} mb={4} {...props} />,
-    h2: (props) => <Heading as="h2" size="lg" mt={8} mb={4} {...props} />,
-    h3: (props) => <Heading as="h3" size="md" mt={8} mb={4} {...props} />,
-    h4: (props) => <Heading as="h4" size="sm" mt={8} mb={4} {...props} />,
-    h5: (props) => <Heading as="h5" size="xs" mt={8} mb={4} {...props} />,
-    h6: (props) => <Heading as="h6" size="xs" mt={8} mb={4} {...props} />,
+    h1: (props) => <LinkedHeading as="h1" size="lg" mt={8} mb={4} {...props} />,
+    h2: (props) => <LinkedHeading as="h2" size="lg" mt={8} mb={4} {...props} />,
+    h3: (props) => <LinkedHeading as="h3" size="md" mt={8} mb={4} {...props} />,
+    h4: (props) => <LinkedHeading as="h4" size="sm" mt={8} mb={4} {...props} />,
+    h5: (props) => <LinkedHeading as="h5" size="xs" mt={8} mb={4} {...props} />,
+    h6: (props) => <LinkedHeading as="h6" size="xs" mt={8} mb={4} {...props} />,
     hr: (props) => <Divider borderColor="gray.400" my={4} {...props} />,
     p: (props) => <Text lineHeight="tall" my={4} {...props} />,
     ul: (props) => <List styleType="disc" my={4} spacing={3} {...props} />,
@@ -103,10 +102,6 @@ const Content = ({ htmlAst, ...props }) => {
           span.gatsby-resp-image-wrapper {
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
               0 1px 2px 0 rgba(0, 0, 0, 0.06);
-          }
-
-          a.anchor.before {
-            padding-right: 1rem;
           }
         `}
       />

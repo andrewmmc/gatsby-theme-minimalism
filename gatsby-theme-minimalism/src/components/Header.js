@@ -106,7 +106,7 @@ const Header = (props) => {
                 ))}
               </List>
             </DrawerBody>
-            <DrawerFooter>
+            <DrawerFooter justifyContent="flex-start">
               <Button
                 as="a"
                 href="/admin"

@@ -13,7 +13,7 @@ const Index = ({ data }) => {
     <Layout>
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
       <Bio mb={12} />
-      <Heading size="lg" mb={6}>
+      <Heading as="h2" size="lg" mb={6}>
         Latest blog posts
       </Heading>
       <List mb={4}>
