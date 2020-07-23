@@ -63,13 +63,6 @@ module.exports = (options) => {
       'gatsby-transformer-sharp',
       'gatsby-plugin-sharp',
       {
-        resolve: 'gatsby-plugin-google-fonts',
-        options: {
-          fonts: ['Inter:400,600,700'],
-          display: 'swap',
-        },
-      },
-      {
         resolve: `gatsby-plugin-feed`,
         options: {
           query: `

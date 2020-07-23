@@ -39,7 +39,7 @@ const Index = ({ data }) => {
         })}
       </List>
       <Link as={GatsbyLink} to="/blog" color="primary.500">
-        Read More
+        Other Posts
         <Icon name="chevron-right" ml="1" />
       </Link>
     </Layout>

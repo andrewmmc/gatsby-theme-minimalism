@@ -17,7 +17,8 @@ const BlogTemplate = ({ data, pageContext }) => {
   const post = data.markdownRemark;
   const { title, date } = post.frontmatter;
   const postCategory = post.frontmatter.category || [];
-  const { readingTime } = post.fields;
+  const { readingTime, slug } = post.fields;
+  const isBlog = slug.startsWith('/blog');
 
   return (
     <Layout>
@@ -32,41 +33,45 @@ const BlogTemplate = ({ data, pageContext }) => {
           <Text as="time">{date}</Text>
           <Text as="span">{readingTime.text}</Text>
         </Stack>
-        <Stack isInline spacing={4} my={4}>
-          {postCategory.map((item, idx) => {
-            return (
-              <Tag size="sm" key={`tag_${idx}`}>
-                {item}
-              </Tag>
-            );
-          })}
-        </Stack>
+        {postCategory.length > 0 && (
+          <Stack isInline spacing={4} my={4}>
+            {postCategory.map((item, idx) => {
+              return (
+                <Tag size="sm" key={`tag_${idx}`}>
+                  {item}
+                </Tag>
+              );
+            })}
+          </Stack>
+        )}
         <Content mt={8} htmlAst={post.htmlAst} />
       </article>
       <Divider borderColor="gray.400" mt={8} mb={6} />
-      <Stack isInline spacing={4}>
-        <Link
-          color="primary.500"
-          fontSize="sm"
-          href={`https://twitter.com/search?q=${encodeURI(
-            siteUrl + post.fields.slug
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Discuss on Twitter
-        </Link>
-        <Link
-          color="primary.500"
-          fontSize="sm"
-          href={`https://github.com/andrewmmc/andrewmmc.com/edit/master/content${post.fields.slug}index.md`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Edit on GitHub
-        </Link>
-      </Stack>
-      {convertKitFormId && <Signup my={6} />}
+      {isBlog && (
+        <Stack isInline spacing={4}>
+          <Link
+            color="primary.500"
+            fontSize="sm"
+            href={`https://twitter.com/search?q=${encodeURI(
+              siteUrl + post.fields.slug
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Discuss on Twitter
+          </Link>
+          <Link
+            color="primary.500"
+            fontSize="sm"
+            href={`https://github.com/andrewmmc/andrewmmc.com/edit/master/content${post.fields.slug}index.md`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Edit on GitHub
+          </Link>
+        </Stack>
+      )}
+      {isBlog && convertKitFormId && <Signup my={6} />}
       <Flex justifyContent="space-between" direction={['column', 'row']} mt={8}>
         {previous && (
           <Link

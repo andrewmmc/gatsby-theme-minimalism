@@ -52,8 +52,8 @@ const Notes = ({ data }) => {
 
   return (
     <Layout>
-      <Seo title="Blog" />
-      <Heading>Unorganized Notes</Heading>
+      <Seo title="Notes" />
+      <Heading>Notes</Heading>
       <InputGroup mb={6}>
         <Input
           value={query}
@@ -63,18 +63,25 @@ const Notes = ({ data }) => {
         />
         <InputRightElement children={<Icon name="search" color="gray.300" />} />
       </InputGroup>
-      <Flex my={4} flexWrap="wrap">
-        {categories.map((item, idx) => (
-          <Link onClick={toggleCategoryFilter} mr={2} mb={2} key={`tag_${idx}`}>
-            <Tag
-              size="sm"
-              variantColor={item.fieldValue === category ? `primary` : `gray`}
+      {categories.length > 0 && (
+        <Flex my={4} flexWrap="wrap">
+          {categories.map((item, idx) => (
+            <Link
+              onClick={toggleCategoryFilter}
+              mr={2}
+              mb={2}
+              key={`tag_${idx}`}
             >
-              {item.fieldValue}
-            </Tag>
-          </Link>
-        ))}
-      </Flex>
+              <Tag
+                size="sm"
+                variantColor={item.fieldValue === category ? `primary` : `gray`}
+              >
+                {item.fieldValue}
+              </Tag>
+            </Link>
+          ))}
+        </Flex>
+      )}
       <List mb={4}>
         {results.length > 0 ? (
           results.map(({ node }, idx) => {

@@ -13,6 +13,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
+  DrawerFooter,
   DrawerCloseButton,
   useDisclosure,
 } from '@chakra-ui/core';
@@ -105,6 +106,18 @@ const Header = (props) => {
                 ))}
               </List>
             </DrawerBody>
+            <DrawerFooter>
+              <Button
+                as="a"
+                href="/admin"
+                variant="ghost"
+                fontWeight="normal"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Login
+              </Button>
+            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </Flex>
