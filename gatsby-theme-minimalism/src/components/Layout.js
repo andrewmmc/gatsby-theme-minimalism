@@ -1,5 +1,5 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { node, bool } from 'prop-types';
 import { Box } from '@chakra-ui/core';
 
 import Header from './Header';
@@ -23,10 +23,12 @@ const Layout = ({ cover, withContainer = true, children, ...props }) => (
 
 Layout.defaultProps = {
   cover: null,
+  withContainer: true,
 };
 
 Layout.propTypes = {
   cover: node,
+  withContainer: bool,
   children: node.isRequired,
 };
 

@@ -4,8 +4,7 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const postsTemplate = require.resolve('./src/templates/blog.js');
-  const projectsTemplate = require.resolve('./src/templates/projects.js');
+  const postTemplate = require.resolve('./src/templates/post.js');
 
   const [blogResults, notesResults, projectsResults] = await Promise.all([
     graphql(blogQuery),
@@ -33,11 +32,14 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : blogPosts[index - 1].node;
     createPage({
       path: slug,
-      component: postsTemplate,
+      component: postTemplate,
       context: {
         slug,
         previous,
         next,
+        isShowFeedback: true,
+        isShowReadingTime: true,
+        dateFormat: 'MMMM DD, YYYY',
       },
     });
   });
@@ -50,11 +52,14 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : notesPosts[index - 1].node;
     createPage({
       path: slug,
-      component: postsTemplate,
+      component: postTemplate,
       context: {
         slug,
         previous,
         next,
+        isShowFeedback: false,
+        isShowReadingTime: false,
+        dateFormat: 'MMMM DD, YYYY',
       },
     });
   });
@@ -67,11 +72,14 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : projectPosts[index - 1].node;
     createPage({
       path: slug,
-      component: projectsTemplate,
+      component: postTemplate,
       context: {
         slug,
         previous,
         next,
+        isShowFeedback: false,
+        isShowReadingTime: false,
+        dateFormat: 'YYYY',
       },
     });
   });

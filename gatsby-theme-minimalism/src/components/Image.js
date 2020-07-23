@@ -21,19 +21,6 @@ export const BackgroundImage = ({
   );
 };
 
-export const FeatureImage = ({ fluid, fixed, ...props }) => {
-  return (
-    <Box w="100%" h={[180, 250]} rounded="sm" overflow="hidden">
-      <Image
-        fluid={fluid}
-        fixed={fixed}
-        style={{ height: '100%' }}
-        {...props}
-      />
-    </Box>
-  );
-};
-
 BackgroundImage.defaultProps = {
   fluid: undefined,
   fixed: undefined,

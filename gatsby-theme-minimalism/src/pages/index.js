@@ -1,11 +1,13 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { Link as GatsbyLink, graphql } from 'gatsby';
-import { Icon, Link, List, ListItem, Stack, Text } from '@chakra-ui/core';
+import { Icon, Link } from '@chakra-ui/core';
+
 import Bio from 'components/Bio';
 import Heading from 'components/Heading';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
+import PostList from 'templates/postList';
 
 const Index = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
@@ -16,28 +18,11 @@ const Index = ({ data }) => {
       <Heading as="h2" size="lg" mb={6}>
         Latest blog posts
       </Heading>
-      <List mb={4}>
-        {posts.map(({ node }, idx) => {
-          const title = node.frontmatter.title || node.fields.slug;
-          const { date } = node.frontmatter;
-          const { readingTime } = node.fields;
-          return (
-            <ListItem mb={6} key={`blog_post_${idx}`}>
-              <Stack spacing={1}>
-                <Stack isInline spacing={4} color="gray.500" fontSize="sm">
-                  <Text as="time">{date}</Text>
-                  <Text as="span">{readingTime.text}</Text>
-                </Stack>
-                <Heading as="h3" size="md">
-                  <Link as={GatsbyLink} to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </Heading>
-              </Stack>
-            </ListItem>
-          );
-        })}
-      </List>
+      <PostList
+        posts={posts}
+        showSearchFilter={false}
+        showCategoryFilter={false}
+      />
       <Link as={GatsbyLink} to="/blog" color="primary.500">
         Other Posts
         <Icon name="chevron-right" ml="1" />
