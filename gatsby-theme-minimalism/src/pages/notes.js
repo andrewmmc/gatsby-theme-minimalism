@@ -18,7 +18,7 @@ import Heading from 'components/Heading';
 import Layout from 'components/Layout';
 import Seo from 'components/Seo';
 
-const Blog = ({ data }) => {
+const Notes = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   const categories = data.allMarkdownRemark.group || [];
   const [query, setQuery] = useState('');
@@ -53,12 +53,12 @@ const Blog = ({ data }) => {
   return (
     <Layout>
       <Seo title="Blog" />
-      <Heading>Blog</Heading>
+      <Heading>Unorganized Notes</Heading>
       <InputGroup mb={6}>
         <Input
           value={query}
           onChange={handleSearchFilter}
-          placeholder="Search articles"
+          placeholder="Search notes"
           size="md"
         />
         <InputRightElement children={<Icon name="search" color="gray.300" />} />
@@ -98,23 +98,23 @@ const Blog = ({ data }) => {
             );
           })
         ) : (
-          <Text>No posts found.</Text>
+          <Text>No notes found.</Text>
         )}
       </List>
     </Layout>
   );
 };
 
-Blog.propTypes = {
+Notes.propTypes = {
   data: shape({}).isRequired,
 };
 
-export default Blog;
+export default Notes;
 
 export const pageQuery = graphql`
   query {
     allMarkdownRemark(
-      filter: { fields: { type: { eq: "blog" } } }
+      filter: { fields: { type: { eq: "notes" } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 1000
     ) {

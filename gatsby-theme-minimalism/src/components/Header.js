@@ -36,6 +36,13 @@ const Header = (props) => {
     });
   }
 
+  if (allPages.includes('/notes/')) {
+    headerItems.push({
+      path: '/notes',
+      label: 'Notes',
+    });
+  }
+
   if (allPages.includes('/projects/')) {
     headerItems.push({
       path: '/projects',

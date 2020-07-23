@@ -1,14 +1,12 @@
 import React from 'react';
 import { graphql, useStaticQuery, Link as GatsbyLink } from 'gatsby';
-import { Text, Flex, Link, Icon } from '@chakra-ui/core';
+import { Text, Flex, Link, Icon, useTheme } from '@chakra-ui/core';
 import styled from '@emotion/styled';
 import Image from 'gatsby-image';
 import Heading from 'components/Heading';
-import { customTheme } from '../themes/styles';
 
 const Bio = (props) => {
-  const { breakpoints } = customTheme;
-
+  const { breakpoints } = useTheme();
   const data = useStaticQuery(pageQuery);
   const { author, authorDescription } = data.site.siteMetadata;
   const avatarSources = [

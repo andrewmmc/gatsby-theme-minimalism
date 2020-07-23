@@ -1,7 +1,7 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { graphql, Link as GatsbyLink } from 'gatsby';
-import { Icon, Text, Stack, Divider, Link, Flex } from '@chakra-ui/core';
+import { Icon, Text, Stack, Divider, Link, Flex, Tag } from '@chakra-ui/core';
 
 import Content from 'components/Content';
 import Heading from 'components/Heading';
@@ -16,6 +16,7 @@ const BlogTemplate = ({ data, pageContext }) => {
   const { previous, next } = pageContext;
   const post = data.markdownRemark;
   const { title, date } = post.frontmatter;
+  const postCategory = post.frontmatter.category || [];
   const { readingTime } = post.fields;
 
   return (
@@ -30,6 +31,15 @@ const BlogTemplate = ({ data, pageContext }) => {
         <Stack isInline spacing={4} my={4} color="gray.500">
           <Text as="time">{date}</Text>
           <Text as="span">{readingTime.text}</Text>
+        </Stack>
+        <Stack isInline spacing={4} my={4}>
+          {postCategory.map((item, idx) => {
+            return (
+              <Tag size="sm" key={`tag_${idx}`}>
+                {item}
+              </Tag>
+            );
+          })}
         </Stack>
         <Content mt={8} htmlAst={post.htmlAst} />
       </article>
@@ -120,6 +130,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        category
       }
     }
   }

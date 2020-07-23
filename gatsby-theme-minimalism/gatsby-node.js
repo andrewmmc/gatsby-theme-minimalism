@@ -4,16 +4,21 @@ const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const blogTemplate = require.resolve('./src/templates/blog.js');
+  const postsTemplate = require.resolve('./src/templates/blog.js');
   const projectsTemplate = require.resolve('./src/templates/projects.js');
 
-  const [blogResults, projectsResults] = await Promise.all([
+  const [blogResults, notesResults, projectsResults] = await Promise.all([
     graphql(blogQuery),
+    graphql(notesQuery),
     graphql(projectsQuery),
   ]);
 
   if (blogResults.errors) {
     throw blogResults.errors;
+  }
+
+  if (notesResults.errors) {
+    throw notesResults.errors;
   }
 
   if (projectsResults.errors) {
@@ -28,7 +33,24 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : blogPosts[index - 1].node;
     createPage({
       path: slug,
-      component: blogTemplate,
+      component: postsTemplate,
+      context: {
+        slug,
+        previous,
+        next,
+      },
+    });
+  });
+
+  const notesPosts = notesResults.data.allMarkdownRemark.edges;
+  notesPosts.forEach((post, index) => {
+    const { slug } = post.node.fields;
+    const previous =
+      index === notesPosts.length - 1 ? null : notesPosts[index + 1].node;
+    const next = index === 0 ? null : notesPosts[index - 1].node;
+    createPage({
+      path: slug,
+      component: postsTemplate,
       context: {
         slug,
         previous,
@@ -146,7 +168,29 @@ exports.sourceNodes = ({ actions, createContentDigest }, themeConfig = {}) => {
 const blogQuery = `
   {
     allMarkdownRemark(
-      filter: { fields: { type: { eq: "blog" } } }
+      filter: { fields: { type: { in: "blog" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1000
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+            type
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
+const notesQuery = `
+  {
+    allMarkdownRemark(
+      filter: { fields: { type: { in: "notes" } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 1000
     ) {
