@@ -19,6 +19,7 @@ export const PostTemplate = ({
   feedback,
   previous,
   next,
+  isHTMLContent = true,
 }) => {
   const previousUrl = previous && previous.fields && previous.fields.slug;
   const previousTitle =
@@ -45,7 +46,7 @@ export const PostTemplate = ({
             })}
           </Stack>
         )}
-        <Content mt={8} htmlAst={content} />
+        <Content mt={8} content={content} isHTMLContent={isHTMLContent} />
       </article>
       <Divider borderColor="gray.400" mt={8} mb={6} />
       {feedback || null}

@@ -14,7 +14,7 @@ const About = ({ data }) => {
     <Layout>
       <Seo title={post.frontmatter.title} description={post.excerpt} />
       <Heading>{post.frontmatter.title}</Heading>
-      <Content htmlAst={post.htmlAst} />
+      <Content content={post.htmlAst} />
       {mapId && (
         <iframe
           src={`//www.google.com/maps/d/u/1/embed?mid=${mapId}&hl=en`}

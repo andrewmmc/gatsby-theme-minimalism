@@ -88,7 +88,7 @@ const renderAst = new rehypeReact({
   },
 }).Compiler;
 
-const Content = ({ htmlAst, ...props }) => {
+const Content = ({ content, isHTMLContent = true, ...props }) => {
   return (
     <Box {...props}>
       <Global
@@ -105,7 +105,7 @@ const Content = ({ htmlAst, ...props }) => {
           }
         `}
       />
-      {renderAst(htmlAst)}
+      {isHTMLContent ? renderAst(content) : content}
     </Box>
   );
 };
