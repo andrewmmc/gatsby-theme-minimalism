@@ -1,6 +1,8 @@
 import React from 'react';
 import { node, bool } from 'prop-types';
+import { ThemeProvider, CSSReset, Box } from '@chakra-ui/core';
 
+import { customTheme } from '../themes/styles';
 import Container from './Container';
 
 const Layout = ({ withContainer = true, children, ...props }) =>
@@ -11,6 +13,17 @@ const Layout = ({ withContainer = true, children, ...props }) =>
   ) : (
     children
   );
+
+export const PreviewLayout = ({ children, ...props }) => {
+  return (
+    <ThemeProvider theme={customTheme} {...props}>
+      <CSSReset />
+      <Box bg="gray.50" minHeight="100vh">
+        <Layout>{children}</Layout>
+      </Box>
+    </ThemeProvider>
+  );
+};
 
 Layout.defaultProps = {
   withContainer: true,
