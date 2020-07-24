@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Box, Flex, IconButton } from '@chakra-ui/core';
 import {
@@ -112,7 +112,7 @@ const Footer = (props) => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
 
 const pageQuery = graphql`
   query {

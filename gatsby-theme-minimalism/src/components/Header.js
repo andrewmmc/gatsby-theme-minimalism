@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby';
 import {
   Box,
@@ -149,7 +149,7 @@ const MenuItem = ({ to, children, ...props }) => {
   );
 };
 
-export default Header;
+export default memo(Header);
 
 const pageQuery = graphql`
   query {

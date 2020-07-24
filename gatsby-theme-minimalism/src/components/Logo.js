@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Heading } from '@chakra-ui/core';
 
-const Logo = props => {
+const Logo = (props) => {
   const data = useStaticQuery(pageQuery);
   const { title } = data.site.siteMetadata;
   return (
@@ -12,7 +12,7 @@ const Logo = props => {
   );
 };
 
-export default Logo;
+export default memo(Logo);
 
 const pageQuery = graphql`
   query {
