@@ -14,12 +14,12 @@ const Layout = ({ withContainer = true, children, ...props }) =>
     children
   );
 
-export const PreviewLayout = ({ children, ...props }) => {
+export const GlobalStyle = ({ children, ...props }) => {
   return (
     <ThemeProvider theme={customTheme} {...props}>
       <CSSReset />
       <Box bg="gray.50" minHeight="100vh">
-        <Layout>{children}</Layout>
+        {children}
       </Box>
     </ThemeProvider>
   );
