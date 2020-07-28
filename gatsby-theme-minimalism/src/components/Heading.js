@@ -1,6 +1,6 @@
 import React from 'react';
 import slugify from 'slugify';
-import { Heading, Icon, PseudoBox } from '@chakra-ui/core';
+import { Heading, PseudoBox } from '@chakra-ui/core';
 
 export const StyledHeading = ({ children, ...props }) => (
   <Heading as="h1" size="xl" mb={4} {...props}>
@@ -30,9 +30,10 @@ export const LinkedHeading = ({ children, ...props }) => {
             boxShadow: 'outline',
           }}
           opacity={0}
+          ml={1}
           href={`#${extraProps.id}`}
         >
-          <Icon name="link" mx={2} mb={1} />
+          #
         </PseudoBox>
       )}
     </StyledHeading>

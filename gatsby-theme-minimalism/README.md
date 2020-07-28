@@ -2,9 +2,9 @@
 
 ![Publish](https://github.com/andrewmmc/gatsby-theme-minimalism/workflows/Publish/badge.svg)
 
-Welcome to `gatsby-theme-minimalism`, a Gatsby theme by [Andrew Mok](https://andrewmmc.com). It's a simple Gatsby theme for blog and static website. Use it easily to create contents by `Markdown`.
+It's a simple Gatsby theme based on [Chakra UI](https://chakra-ui.com) for blog and static website. Use it easily to create contents with `.md` format.
 
-<!-- ![Demo](https://github.com/andrewmmc/gatsby-theme-minimalism/raw/master/gatsby-theme-minimalism/README1.png) -->
+![Demo](https://github.com/andrewmmc/gatsby-theme-minimalism/raw/master/gatsby-theme-minimalism/README1.png)
 
 ## Preview
 
@@ -56,7 +56,6 @@ module.exports = {
       // Note that siteName is required for RSS.
       options: {
         siteName: '',
-        convertKitFormId: '',
         mapId: '',
       },
     },
@@ -64,11 +63,10 @@ module.exports = {
 };
 ```
 
-| Options                     | Required? | Description                                                     |
-| --------------------------- | --------- | --------------------------------------------------------------- |
-| `siteName` (string)         | Y         | Required for RSS                                                |
-| `convertKitFormId` (string) | N         | ConvertKit ID for blog posts, will not render if empty          |
-| `mapId` (string)            | N         | Google Maps My Maps ID for about page, will not render if empty |
+| Options             | Required? | Description                                                     |
+| ------------------- | --------- | --------------------------------------------------------------- |
+| `siteName` (string) | Y         | Required for RSS                                                |
+| `mapId` (string)    | N         | Google Maps My Maps ID for about page, will not render if empty |
 
 ## Writing contents and replacing images
 
@@ -79,12 +77,17 @@ You can replace the markdown files in `content` to update your website. You can 
 ```
 .
 ├── assets
-|   ├── about.jpg
+|   ├── profile.jpg
 |   └── ...
 ├── content
 |   ├── about
 |   |   └── index.md
 |   ├── blog
+|   |   ├── 2020
+|   |   |   └── title
+|   |   |       └── index.md
+|   |   └── ...
+|   ├── notes
 |   |   ├── 2020
 |   |   |   └── title
 |   |   |       └── index.md

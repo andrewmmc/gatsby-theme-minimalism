@@ -6,7 +6,6 @@ const useThemeConfig = () => {
     query {
       themeConfig(id: { eq: "gatsby-theme-minimalism" }) {
         siteName
-        convertKitFormId
         mapId
       }
     }

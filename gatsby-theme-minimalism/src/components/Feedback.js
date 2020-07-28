@@ -3,13 +3,7 @@ import { string, bool } from 'prop-types';
 import { Stack, Link } from '@chakra-ui/core';
 import Signup from 'components/Signup';
 
-const Feedback = ({
-  siteUrl,
-  slug,
-  showTwitter = true,
-  showGitHub = true,
-  showConvertKitForm = true,
-}) => {
+const Feedback = ({ siteUrl, slug, showTwitter = true, showGitHub = true }) => {
   return (
     <>
       <Stack isInline spacing={4}>
@@ -36,7 +30,7 @@ const Feedback = ({
           </Link>
         )}
       </Stack>
-      {showConvertKitForm && <Signup my={6} />}
+      <Signup />
     </>
   );
 };
