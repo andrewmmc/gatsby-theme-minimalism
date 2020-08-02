@@ -40,11 +40,12 @@ Card.propTypes = {
   date: string.isRequired,
   readingTime: string,
   title: string.isRequired,
-  featuredImage: shape({}).isRequired,
+  featuredImage: shape({}),
 };
 
 Card.defaultProps = {
   readingTime: undefined,
+  featuredImage: undefined,
 };
 
 export default Card;

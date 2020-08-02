@@ -1,8 +1,7 @@
 import React from 'react';
 import { shape } from 'prop-types';
 import { Link as GatsbyLink, graphql } from 'gatsby';
-import { Box, Link, Grid } from '@chakra-ui/core';
-import Container from 'components/Container';
+import { Link, Grid } from '@chakra-ui/core';
 import Card from 'components/Card';
 import Heading from 'components/Heading';
 import Layout from 'components/Layout';
@@ -11,42 +10,38 @@ import Seo from 'components/Seo';
 const Projects = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
-    <Layout withContainer={false}>
+    <Layout>
       <Seo title="Projects" />
-      <Container maxW="4xl">
-        <Box maxW="2xl" m="0 auto" px={[, 4]}>
-          <Heading>Projects</Heading>
-        </Box>
-        <Grid
-          gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
-          gridTemplateRows={['1fr 1fr 1fr', '1fr']}
-          gap={4}
-          mb={8}
-        >
-          {posts.map(({ node }, idx) => {
-            const title = node.frontmatter.title || node.fields.slug;
-            const { date, featuredImage } = node.frontmatter;
-            return (
-              <Link
-                as={GatsbyLink}
-                to={node.fields.slug}
-                rounded="lg"
-                shadow="sm"
-                _hover={{ shadow: 'md' }}
-                key={`projects_post_${idx}`}
-              >
-                <Card
-                  date={date}
-                  title={title}
-                  {...(!!featuredImage && {
-                    featuredImage: featuredImage.childImageSharp,
-                  })}
-                />
-              </Link>
-            );
-          })}
-        </Grid>
-      </Container>
+      <Heading>Projects</Heading>
+      <Grid
+        gridTemplateColumns={['1fr', '1fr 1fr']}
+        gridTemplateRows={['1fr 1fr', '1fr']}
+        gap={8}
+        mt={8}
+      >
+        {posts.map(({ node }, idx) => {
+          const title = node.frontmatter.title || node.fields.slug;
+          const { date, featuredImage } = node.frontmatter;
+          return (
+            <Link
+              as={GatsbyLink}
+              to={node.fields.slug}
+              rounded="lg"
+              shadow="sm"
+              _hover={{ shadow: 'md' }}
+              key={`projects_post_${idx}`}
+            >
+              <Card
+                date={date}
+                title={title}
+                {...(!!featuredImage && {
+                  featuredImage: featuredImage.childImageSharp,
+                })}
+              />
+            </Link>
+          );
+        })}
+      </Grid>
     </Layout>
   );
 };
