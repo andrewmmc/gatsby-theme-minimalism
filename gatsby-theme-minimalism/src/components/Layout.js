@@ -9,7 +9,7 @@ import Container from './Container';
 const defaultConfig = (theme) => ({
   light: {
     color: theme.colors.gray[800],
-    bg: theme.colors.gray[50],
+    bg: theme.colors.white,
     borderColor: theme.colors.gray[200],
     placeholderColor: theme.colors.gray[400],
   },

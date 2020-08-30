@@ -66,7 +66,7 @@ const Header = (props) => {
   }
 
   return (
-    <Box bg="white" width="100%" borderBottomWidth="1px">
+    <Box width="100%">
       <Flex
         as="nav"
         justify="space-between"
