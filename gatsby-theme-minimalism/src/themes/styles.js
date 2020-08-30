@@ -1,46 +1,45 @@
 import { theme } from '@chakra-ui/core';
 
+const greyScaleColors = {
+  50: '#f2f2f2',
+  100: '#f2f2f2',
+  200: '#e6e6e6',
+  300: '#b3b3b3',
+  400: '#b3b3b3',
+  500: '#333333',
+  600: '#333333',
+  700: '#333333',
+  800: '#333333',
+  900: '#333333',
+};
+
 export const customTheme = {
   ...theme,
   colors: {
-    ...theme.colors,
-    primary: {
-      50: '#f6f6f6',
-      100: '#e8e8e8',
-      200: '#c6c6c6',
-      300: '#acacac',
-      400: '#949494',
-      500: '#808080',
-      600: '#6a6a6a',
-      700: '#525252',
-      800: '#434343',
-      900: '#3a3a3a',
-    },
-    gray: {
-      50: '#f6f6f6',
-      100: '#e8e8e8',
-      200: '#c6c6c6',
-      300: '#acacac',
-      400: '#949494',
-      500: '#808080',
-      600: '#6a6a6a',
-      700: '#525252',
-      800: '#434343',
-      900: '#3a3a3a',
-    },
-    blue: {
-      50: '#f6f6f6',
-      100: '#e8e8e8',
-      200: '#c6c6c6',
-      300: '#acacac',
-      400: '#949494',
-      500: '#808080',
-      600: '#6a6a6a',
-      700: '#525252',
-      800: '#434343',
-      900: '#3a3a3a',
-    },
+    whiteAlpha: theme.colors.whiteAlpha,
+    blackAlpha: theme.colors.blackAlpha,
+    primary: greyScaleColors,
+    gray: greyScaleColors,
+    red: greyScaleColors,
+    orange: greyScaleColors,
+    yellow: greyScaleColors,
+    green: greyScaleColors,
+    teal: greyScaleColors,
+    blue: greyScaleColors,
+    cyan: greyScaleColors,
+    purple: greyScaleColors,
+    pink: greyScaleColors,
+    linkedin: greyScaleColors,
+    facebook: greyScaleColors,
+    messenger: greyScaleColors,
+    whatsapp: greyScaleColors,
+    twitter: greyScaleColors,
+    telegram: greyScaleColors,
   },
+  shadows: {
+    ...theme.shadows,
+    outline: "0 0 0 2px rgba(179, 179, 179, 0.6)",
+  }
 };
 
 export default customTheme;
