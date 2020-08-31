@@ -1,31 +1,45 @@
 import { theme } from '@chakra-ui/core';
 
 const greyScaleColors = {
-  50: '#f2f2f2',
-  100: '#f2f2f2',
-  200: '#e6e6e6',
-  300: '#b3b3b3',
-  400: '#b3b3b3',
-  500: '#333333',
+  50: '#F2F2F2',
+  100: '#F2F2F2',
+  200: '#E6E6E6',
+  300: '#B3B3B3',
+  400: '#8A8A8A',
+  500: '#555555',
   600: '#333333',
   700: '#333333',
-  800: '#333333',
-  900: '#333333',
+  800: '#222222',
+  900: '#000000',
+};
+
+const primaryColors = {
+  50: '#eeebe5',
+  100: '#eeebe5',
+  200: '#ded7ca',
+  300: '#cdc2b0',
+  400: '#bdae95',
+  500: '#ac9a7b',
+  600: '#8a7b62',
+  700: '#675c4a',
+  800: '#453e31',
+  900: '#221f19',
 };
 
 export const customTheme = {
   ...theme,
   colors: {
+    ...theme.colors,
     whiteAlpha: theme.colors.whiteAlpha,
     blackAlpha: theme.colors.blackAlpha,
-    primary: greyScaleColors,
+    primary: primaryColors,
     gray: greyScaleColors,
     red: greyScaleColors,
     orange: greyScaleColors,
     yellow: greyScaleColors,
     green: greyScaleColors,
     teal: greyScaleColors,
-    blue: greyScaleColors,
+    blue: primaryColors,
     cyan: greyScaleColors,
     purple: greyScaleColors,
     pink: greyScaleColors,
@@ -38,8 +52,8 @@ export const customTheme = {
   },
   shadows: {
     ...theme.shadows,
-    outline: "0 0 0 2px rgba(179, 179, 179, 0.6)",
-  }
+    outline: '0 0 0 2px rgba(179, 179, 179, 0.4)',
+  },
 };
 
 export default customTheme;

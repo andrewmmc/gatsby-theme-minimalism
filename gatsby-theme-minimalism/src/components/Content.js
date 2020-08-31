@@ -95,13 +95,7 @@ const Content = ({ content, isHTMLContent = true, ...props }) => {
         styles={css`
           pre.grvsc-container {
             margin: 2rem 0;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-              0 1px 2px 0 rgba(0, 0, 0, 0.06);
-          }
-
-          span.gatsby-resp-image-wrapper {
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-              0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border-width: 1px;
           }
         `}
       />

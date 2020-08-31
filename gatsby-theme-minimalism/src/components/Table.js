@@ -8,7 +8,7 @@ import { Box } from '@chakra-ui/core';
 
 export const Table = (props) => {
   return (
-    <Box shadow="sm" rounded="lg" overflow="hidden">
+    <Box borderWidth="1px" rounded="lg" overflow="hidden">
       <Box as="table" width="full" {...props} />
     </Box>
   );
@@ -19,7 +19,7 @@ export const TableHead = (props) => {
 };
 
 export const TableRow = (props) => {
-  return <Box as="tr" bg="white" borderBottomWidth="1px" {...props} />;
+  return <Box as="tr" bg="white" {...props} />;
 };
 
 export const TableHeader = (props) => {

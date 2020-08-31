@@ -26,9 +26,6 @@ const Projects = ({ data }) => {
             <Link
               as={GatsbyLink}
               to={node.fields.slug}
-              rounded="lg"
-              shadow="sm"
-              _hover={{ shadow: 'md' }}
               key={`projects_post_${idx}`}
             >
               <Card

@@ -6,15 +6,17 @@ import { BackgroundImage } from 'components/Image';
 const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
   return (
     <Box
-      rounded="lg"
-      bg="white"
       textAlign="left"
       height="100%"
       minH="300px"
       overflow="hidden"
       {...props}
     >
-      {featuredImage && <BackgroundImage height={150} {...featuredImage} />}
+      {featuredImage && (
+        <Box rounded="lg" overflow="hidden">
+          <BackgroundImage height={150} {...featuredImage} />
+        </Box>
+      )}
       <Stack spacing={1} p={6}>
         <Flex
           color="gray.500"
