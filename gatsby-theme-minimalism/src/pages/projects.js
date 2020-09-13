@@ -1,7 +1,7 @@
 import React from 'react';
 import { shape } from 'prop-types';
-import { Link as GatsbyLink, graphql } from 'gatsby';
-import { Link, Grid } from '@chakra-ui/core';
+import { graphql } from 'gatsby';
+import { Grid } from '@chakra-ui/core';
 import Card from 'components/Card';
 import Heading from 'components/Heading';
 import Layout from 'components/Layout';
@@ -23,19 +23,15 @@ const Projects = ({ data }) => {
           const title = node.frontmatter.title || node.fields.slug;
           const { date, featuredImage } = node.frontmatter;
           return (
-            <Link
-              as={GatsbyLink}
-              to={node.fields.slug}
+            <Card
               key={`projects_post_${idx}`}
-            >
-              <Card
-                date={date}
-                title={title}
-                {...(!!featuredImage && {
-                  featuredImage: featuredImage.childImageSharp,
-                })}
-              />
-            </Link>
+              path={node.fields.slug}
+              date={date}
+              title={title}
+              {...(!!featuredImage && {
+                featuredImage: featuredImage.childImageSharp,
+              })}
+            />
           );
         })}
       </Grid>

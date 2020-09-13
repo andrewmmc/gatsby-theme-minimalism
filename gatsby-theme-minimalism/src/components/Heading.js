@@ -3,7 +3,14 @@ import slugify from 'slugify';
 import { Heading, PseudoBox } from '@chakra-ui/core';
 
 export const StyledHeading = ({ children, ...props }) => (
-  <Heading as="h1" size="xl" mb={4} {...props}>
+  <Heading
+    as="h1"
+    size="xl"
+    fontWeight="500"
+    mb={4}
+    color="gray.800"
+    {...props}
+  >
     {children}
   </Heading>
 );

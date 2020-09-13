@@ -1,9 +1,11 @@
 import React from 'react';
 import { string, shape } from 'prop-types';
-import { Box, Flex, Heading, Text, Stack } from '@chakra-ui/core';
+import { Link as GatsbyLink } from 'gatsby';
+import { Link, Box, Flex, Text, Stack } from '@chakra-ui/core';
 import { BackgroundImage } from 'components/Image';
+import Heading from 'components/Heading';
 
-const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
+const Card = ({ path, date, readingTime, title, featuredImage, ...props }) => {
   return (
     <Box
       textAlign="left"
@@ -30,9 +32,11 @@ const Card = ({ date, readingTime, title, featuredImage, ...props }) => {
           )}
           {readingTime && <Text as="span">{readingTime}</Text>}
         </Flex>
-        <Heading as="h3" size="md">
-          {title}
-        </Heading>
+        <Link as={GatsbyLink} to={path}>
+          <Heading as="h3" size="md" mb={0}>
+            {title}
+          </Heading>
+        </Link>
       </Stack>
     </Box>
   );

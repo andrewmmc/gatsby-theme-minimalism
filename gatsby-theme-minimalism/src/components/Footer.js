@@ -23,11 +23,11 @@ const Footer = (props) => {
       flexWrap="nowrap"
       justify="space-between"
       alignItems="center"
-      maxW="2xl"
+      maxW="3xl"
       m="0 auto"
       px="4"
       py="3"
-      color="gray.500"
+      color="gray.700"
       {...props}
     >
       <Box mb={[2, 0]}>© {new Date().getFullYear()}</Box>
@@ -39,6 +39,7 @@ const Footer = (props) => {
           rel="noopener noreferrer"
           aria-label="RSS"
           variant="ghost"
+          _active={{ bg: 'gray.100' }}
           icon={FiRss}
         />
         {github && (
@@ -49,6 +50,7 @@ const Footer = (props) => {
             rel="noopener noreferrer"
             aria-label="GitHub"
             variant="ghost"
+            _active={{ bg: 'gray.100' }}
             icon={FiGithub}
           />
         )}
@@ -60,6 +62,7 @@ const Footer = (props) => {
             rel="noopener noreferrer"
             aria-label="Twitter"
             variant="ghost"
+            _active={{ bg: 'gray.100' }}
             icon={FiTwitter}
           />
         )}
@@ -71,6 +74,7 @@ const Footer = (props) => {
             rel="noopener noreferrer"
             aria-label="Facebook"
             variant="ghost"
+            _active={{ bg: 'gray.100' }}
             icon={FiFacebook}
           />
         )}
@@ -82,6 +86,7 @@ const Footer = (props) => {
             rel="noopener noreferrer"
             aria-label="Instagram"
             variant="ghost"
+            _active={{ bg: 'gray.100' }}
             icon={FiInstagram}
           />
         )}
@@ -93,6 +98,7 @@ const Footer = (props) => {
             rel="noopener noreferrer"
             aria-label="Linkedin"
             variant="ghost"
+            _active={{ bg: 'gray.100' }}
             icon={FiLinkedin}
           />
         )}
@@ -104,6 +110,7 @@ const Footer = (props) => {
             rel="noopener noreferrer"
             aria-label="Medium"
             variant="ghost"
+            _active={{ bg: 'gray.100' }}
             icon={RiMediumLine}
           />
         )}

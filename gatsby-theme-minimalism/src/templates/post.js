@@ -31,7 +31,7 @@ export const PostTemplate = ({
     <>
       <article>
         <Heading>{title}</Heading>
-        <Stack isInline spacing={4} my={4} color="gray.500">
+        <Stack isInline spacing={4} my={4} color="gray.600">
           {date && <Text as="time">{date}</Text>}
           {readingTime && <Text as="span">{readingTime}</Text>}
         </Stack>
@@ -48,7 +48,7 @@ export const PostTemplate = ({
         )}
         <Content mt={8} content={content} isHTMLContent={isHTMLContent} />
       </article>
-      <Divider borderColor="gray.400" mt={8} mb={6} />
+      <Divider borderColor="gray.300" mt={8} mb={6} />
       {feedback || null}
       <PostNav
         previousUrl={previousUrl}

@@ -15,18 +15,11 @@ const Index = ({ data }) => {
     <Layout>
       <Seo keywords={data.site.siteMetadata.seoKeywords} />
       <Bio mb={12} />
-      <Heading as="h2" size="lg" mb={6}>
-        Latest blog posts
-      </Heading>
       <PostList
         posts={posts}
         showSearchFilter={false}
         showCategoryFilter={false}
       />
-      <Link as={GatsbyLink} to="/blog" color="primary.500">
-        Other Posts
-        <Icon name="chevron-right" ml="1" />
-      </Link>
     </Layout>
   );
 };
@@ -42,7 +35,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       filter: { fields: { type: { eq: "blog" } } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 5
+      limit: 1000
     ) {
       edges {
         node {

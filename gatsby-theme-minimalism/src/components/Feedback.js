@@ -1,7 +1,6 @@
 import React from 'react';
 import { string, bool } from 'prop-types';
 import { Stack, Link } from '@chakra-ui/core';
-import Signup from 'components/Signup';
 
 const Feedback = ({ siteUrl, slug, showTwitter = true, showGitHub = true }) => {
   return (
@@ -30,7 +29,6 @@ const Feedback = ({ siteUrl, slug, showTwitter = true, showGitHub = true }) => {
           </Link>
         )}
       </Stack>
-      <Signup />
     </>
   );
 };

@@ -13,7 +13,6 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerFooter,
   DrawerCloseButton,
   useDisclosure,
 } from '@chakra-ui/core';
@@ -28,14 +27,7 @@ const Header = (props) => {
   const { github } = social || {};
 
   const allPages = data.allSitePage.edges.map((edge) => edge.node.path);
-  const headerItems = [{ path: '/', label: 'Home' }];
-
-  if (allPages.includes('/blog/')) {
-    headerItems.push({
-      path: '/blog',
-      label: 'Blog',
-    });
-  }
+  const headerItems = [{ path: '/', label: 'Blog' }];
 
   if (allPages.includes('/notes/')) {
     headerItems.push({
@@ -66,15 +58,15 @@ const Header = (props) => {
   }
 
   return (
-    <Box width="100%">
+    <Box width="100%" borderBottomWidth="1px">
       <Flex
         as="nav"
         justify="space-between"
         alignItems="center"
-        maxW="2xl"
+        maxW="3xl"
         m="0 auto"
         px="4"
-        py="3"
+        py="2"
         {...props}
       >
         <Link as={GatsbyLink} to="/">
@@ -106,18 +98,6 @@ const Header = (props) => {
                 ))}
               </List>
             </DrawerBody>
-            <DrawerFooter justifyContent="flex-start">
-              <Button
-                as="a"
-                href="/admin"
-                variant="ghost"
-                fontWeight="normal"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Login
-              </Button>
-            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </Flex>
@@ -141,6 +121,7 @@ const MenuItem = ({ to, children, ...props }) => {
       to={to}
       variant="ghost"
       fontWeight="normal"
+      _active={{ bg: 'gray.100' }}
       {...externalProps}
       {...props}
     >

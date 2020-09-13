@@ -96,7 +96,7 @@ const PostList = ({
             return (
               <ListItem mb={6} key={`post_${idx}`}>
                 <Stack spacing={1}>
-                  <Stack isInline spacing={4} color="gray.500" fontSize="sm">
+                  <Stack isInline spacing={4} color="gray.600" fontSize="sm">
                     <Text as="time">{date}</Text>
                     <Text as="span">{readingTime.text}</Text>
                   </Stack>
