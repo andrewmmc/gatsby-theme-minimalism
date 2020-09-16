@@ -96,6 +96,10 @@ const Content = ({ content, isHTMLContent = true, ...props }) => {
           pre.grvsc-container {
             margin: 2rem 0;
             border-width: 1px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow: auto;
+            max-width: 90vw; /* Quick fix on mobile responsive */
           }
         `}
       />
