@@ -58,7 +58,7 @@ const renderAst = new rehypeReact({
           <Link
             color="primary.500"
             {...remainProps}
-            overflowWrap="break-word"
+            overflowWrap="anywhere"
             isExternal
           >
             {children}
@@ -66,7 +66,7 @@ const renderAst = new rehypeReact({
           </Link>
         );
       }
-      return <Link color="primary.500" overflowWrap="break-word" {...props} />;
+      return <Link color="primary.500" overflowWrap="anywhere" {...props} />;
     },
     img: (props) => <Box as="img" rounded="sm" {...props} />,
     figure: (props) => <Box as="figure" textAlign="center" my={8} {...props} />,
@@ -99,7 +99,7 @@ const Content = ({ content, isHTMLContent = true, ...props }) => {
             white-space: pre-wrap;
             word-break: break-all;
             overflow: auto;
-            max-width: 90vw; /* Quick fix on mobile responsive */
+            max-width: calc(100vw - 2rem);
           }
         `}
       />
