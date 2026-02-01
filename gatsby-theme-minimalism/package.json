@@ -41,7 +41,7 @@
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-preset-gatsby": "^0.5.2",
-    "eslint": "^7.4.0",
+    "eslint": "^9.26.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-alias": "^1.1.2",
